@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en" data-gf-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlassFlow UI - Liquid Glass Component Library</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💎</text></svg>" />
+  <style>
+    /* ========================================================================== */
+    /* GlassFlow UI - Demo Page Styles (Inline for portability)                   */
+    /* ========================================================================== */
+
+    /* --- Reset & Base --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gf-bg: rgba(255, 255, 255, 0.55);
+      --gf-bg-solid: #f2f2f7;
+      --gf-border: rgba(255, 255, 255, 0.7);
+      --gf-text: #1d1d1f;
+      --gf-text-secondary: #86868b;
+      --gf-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      --gf-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.12);
+      --gf-accent: #007aff;
+      --gf-accent-rgb: 0, 122, 255;
+      --gf-surface: #ffffff;
+      --gf-overlay: rgba(0, 0, 0, 0.3);
+      --gf-ripple: rgba(0, 0, 0, 0.08);
+      --gf-mouse-light: rgba(255, 255, 255, 0.5);
+      --gf-refraction: 0.8;
+      --gf-caustics: rgba(255, 255, 255, 0.15);
+      --gf-nav-bg: rgba(255, 255, 255, 0.72);
+      --page-bg: #f5f5f7;
+      --demo-gradient-1: #667eea;
+      --demo-gradient-2: #764ba2;
+    }
+
+    [data-gf-theme="dark"] {
+      --gf-bg: rgba(30, 30, 30, 0.65);
+      --gf-bg-solid: #1c1c1e;
+      --gf-border: rgba(255, 255, 255, 0.12);
+      --gf-text: #f5f5f7;
+      --gf-text-secondary: #98989d;
+      --gf-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --gf-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.4);
+      --gf-accent: #0a84ff;
+      --gf-accent-rgb: 10, 132, 255;
+      --gf-surface: #2c2c2e;
+      --gf-overlay: rgba(0, 0, 0, 0.6);
+      --gf-ripple: rgba(255, 255, 255, 0.1);
+      --gf-mouse-light: rgba(255, 255, 255, 0.15);
+      --gf-nav-bg: rgba(28, 28, 30, 0.72);
+      --page-bg: #000000;
+    }
+
+    [data-gf-theme="aurora"] {
+      --gf-bg: rgba(20, 20, 40, 0.6);
+      --gf-bg-solid: #14142a;
+      --gf-border: rgba(120, 80, 255, 0.25);
+      --gf-text: #e8e0ff;
+      --gf-text-secondary: #a89cc8;
+      --gf-shadow: 0 8px 32px rgba(80, 40, 200, 0.2);
+      --gf-shadow-hover: 0 12px 48px rgba(80, 40, 200, 0.35);
+      --gf-accent: #a855f7;
+      --gf-accent-rgb: 168, 85, 247;
+      --gf-surface: #1e1e3a;
+      --gf-overlay: rgba(10, 10, 30, 0.7);
+      --gf-ripple: rgba(168, 85, 247, 0.15);
+      --gf-mouse-light: rgba(168, 85, 247, 0.2);
+      --gf-nav-bg: rgba(20, 20, 40, 0.75);
+      --page-bg: #0a0a1a;
+      --demo-gradient-1: #a855f7;
+      --demo-gradient-2: #6366f1;
+    }
+
+    [data-gf-theme="ocean"] {
+      --gf-bg: rgba(10, 40, 60, 0.6);
+      --gf-bg-solid: #0a283c;
+      --gf-border: rgba(0, 180, 216, 0.25);
+      --gf-text: #d0f0ff;
+      --gf-text-secondary: #7ab8d0;
+      --gf-shadow: 0 8px 32px rgba(0, 100, 150, 0.2);
+      --gf-shadow-hover: 0 12px 48px rgba(0, 100, 150, 0.35);
+      --gf-accent: #00b4d8;
+      --gf-accent-rgb: 0, 180, 216;
+      --gf-surface: #0e3450;
+      --gf-overlay: rgba(5, 20, 35, 0.7);
+      --gf-ripple: rgba(0, 180, 216, 0.15);
+      --gf-mouse-light: rgba(0, 180, 216, 0.2);
+      --gf-nav-bg: rgba(10, 40, 60, 0.75);
+      --page-bg: #051520;
+      --demo-gradient-1: #00b4d8;
+      --demo-gradient-2: #0077b6;
+    }
+
+    [data-gf-theme="rose"] {
+      --gf-bg: rgba(60, 20, 40, 0.6);
+      --gf-bg-solid: #3c1428;
+      --gf-border: rgba(255, 80, 120, 0.25);
+      --gf-text: #ffe0ea;
+      --gf-text-secondary: #d08aa0;
+      --gf-shadow: 0 8px 32px rgba(200, 40, 80, 0.2);
+      --gf-shadow-hover: 0 12px 48px rgba(200, 40, 80, 0.35);
+      --gf-accent: #ff5078;
+      --gf-accent-rgb: 255, 80, 120;
+      --gf-surface: #4a1a30;
+      --gf-overlay: rgba(30, 10, 20, 0.7);
+      --gf-ripple: rgba(255, 80, 120, 0.15);
+      --gf-mouse-light: rgba(255, 80, 120, 0.2);
+      --gf-nav-bg: rgba(60, 20, 40, 0.75);
+      --page-bg: #1a0810;
+      --demo-gradient-1: #ff5078;
+      --demo-gradient-2: #e11d48;
+    }
+
+    [data-gf-theme="emerald"] {
+      --gf-bg: rgba(15, 50, 35, 0.6);
+      --gf-bg-solid: #0f3223;
+      --gf-border: rgba(16, 185, 129, 0.25);
+      --gf-text: #d0ffe8;
+      --gf-text-secondary: #7ac0a0;
+      --gf-shadow: 0 8px 32px rgba(0, 120, 80, 0.2);
+      --gf-shadow-hover: 0 12px 48px rgba(0, 120, 80, 0.35);
+      --gf-accent: #10b981;
+      --gf-accent-rgb: 16, 185, 129;
+      --gf-surface: #134030;
+      --gf-overlay: rgba(8, 25, 18, 0.7);
+      --gf-ripple: rgba(16, 185, 129, 0.15);
+      --gf-mouse-light: rgba(16, 185, 129, 0.2);
+      --gf-nav-bg: rgba(15, 50, 35, 0.75);
+      --page-bg: #061a10;
+      --demo-gradient-1: #10b981;
+      --demo-gradient-2: #059669;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--gf-text);
+      background: var(--page-bg);
+      line-height: 1.6;
+      transition: background 0.5s ease, color 0.5s ease;
+      overflow-x: hidden;
+    }
+
+    /* --- Background Decoration --- */
+    .bg-decoration {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: blobFloat 20s ease-in-out infinite;
+    }
+    .bg-blob:nth-child(1) {
+      width: 500px; height: 500px;
+      background: var(--demo-gradient-1);
+      top: -10%; right: -5%;
+      animation-delay: 0s;
+    }
+    .bg-blob:nth-child(2) {
+      width: 400px; height: 400px;
+      background: var(--demo-gradient-2);
+      bottom: 10%; left: -5%;
+      animation-delay: -7s;
+    }
+    .bg-blob:nth-child(3) {
+      width: 300px; height: 300px;
+      background: var(--gf-accent);
+      top: 40%; left: 40%;
+      animation-delay: -14s;
+      opacity: 0.2;
+    }
+
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -40px) scale(1.05); }
+      50% { transform: translate(-20px, 20px) scale(0.95); }
+      75% { transform: translate(15px, 30px) scale(1.02); }
+    }
+
+    /* --- Navigation --- */
+    .gf-nav {
+      position: fixed;
+      top: 16px; left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 900px;
+      z-index: 1000;
+      background: var(--gf-nav-bg);
+      border: 1px solid var(--gf-border);
+      border-radius: 20px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      -webkit-backdrop-filter: blur(24px) saturate(1.8);
+      backdrop-filter: blur(24px) saturate(1.8);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+    .gf-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--gf-text);
+      text-decoration: none;
+    }
+    .gf-nav-brand .logo {
+      width: 32px; height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--demo-gradient-1), var(--demo-gradient-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .gf-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+    .gf-nav-links a {
+      color: var(--gf-text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    .gf-nav-links a:hover {
+      color: var(--gf-text);
+      background: var(--gf-bg);
+    }
+
+    /* --- Theme Toggle in Nav --- */
+    .nav-theme-toggle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--gf-border);
+      background: var(--gf-bg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+    .nav-theme-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: var(--gf-shadow-hover);
+    }
+
+    /* --- Container --- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      background: var(--gf-bg);
+      border: 1px solid var(--gf-border);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gf-accent);
+      margin-bottom: 32px;
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gf-accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.5); }
+    }
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--gf-text) 0%, var(--gf-text-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--demo-gradient-1), var(--demo-gradient-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--gf-text-secondary);
+      max-width: 600px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* --- Glass Button Styles --- */
+    .gf-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      border: none;
+      outline: none;
+    }
+    .gf-btn-primary {
+      background: linear-gradient(135deg, var(--demo-gradient-1), var(--demo-gradient-2));
+      color: #ffffff;
+      box-shadow: 0 4px 16px rgba(var(--gf-accent-rgb), 0.3);
+    }
+    .gf-btn-primary:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(var(--gf-accent-rgb), 0.4);
+    }
+    .gf-btn-glass {
+      background: var(--gf-bg);
+      border: 1px solid var(--gf-border);
+      color: var(--gf-text);
+      -webkit-backdrop-filter: blur(16px) saturate(1.8);
+      backdrop-filter: blur(16px) saturate(1.8);
+      box-shadow: var(--gf-shadow);
+    }
+    .gf-btn-glass:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: var(--gf-shadow-hover);
+    }
+    .gf-btn:active {
+      transform: translateY(0) scale(0.97) !important;
+    }
+
+    /* --- Section Styles --- */
+    .section {
+      padding: 100px 0;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gf-accent);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 17px;
+      color: var(--gf-text-secondary);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* --- Glass Card --- */
+    .gf-card {
+      background: var(--gf-bg);
+      border: 1px solid var(--gf-border);
+      border-radius: 24px;
+      padding: 28px;
+      -webkit-backdrop-filter: blur(20px) saturate(1.8) brightness(1.1);
+      backdrop-filter: blur(20px) saturate(1.8) brightness(1.1);
+      box-shadow: var(--gf-shadow);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .gf-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      pointer-events: none;
+    }
+    .gf-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: var(--gf-shadow-hover);
+    }
+    .gf-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .gf-card p {
+      font-size: 14px;
+      color: var(--gf-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* --- Grid Layouts --- */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 24px;
+    }
+
+    /* --- Theme Switcher --- */
+    .theme-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .theme-btn {
+      width: 48px; height: 48px;
+      border-radius: 16px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .theme-btn:hover {
+      transform: scale(1.15);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .theme-btn.active {
+      border-color: var(--gf-accent);
+      transform: scale(1.1);
+      box-shadow: 0 0 0 3px rgba(var(--gf-accent-rgb), 0.2);
+    }
+    .theme-btn-light { background: linear-gradient(135deg, #f5f5f7, #e5e5ea); }
+    .theme-btn-dark { background: linear-gradient(135deg, #1c1c1e, #2c2c2e); }
+    .theme-btn-aurora { background: linear-gradient(135deg, #14142a, #a855f7); }
+    .theme-btn-ocean { background: linear-gradient(135deg, #0a283c, #00b4d8); }
+    .theme-btn-rose { background: linear-gradient(135deg, #3c1428, #ff5078); }
+    .theme-btn-emerald { background: linear-gradient(135deg, #0f3223, #10b981); }
+    .theme-label {
+      font-size: 12px;
+      color: var(--gf-text-secondary);
+      text-align: center;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+    .theme-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* --- Component Demo Area --- */
+    .demo-box {
+      background: var(--gf-bg);
+      border: 1px solid var(--gf-border);
+      border-radius: 24px;
+      padding: 40px;
+      -webkit-backdrop-filter: blur(20px) saturate(1.8);
+      backdrop-filter: blur(20px) saturate(1.8);
+      box-shadow: var(--gf-shadow);
+    }
+    .demo-box-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gf-text-secondary);
+      margin-bottom: 24px;
+    }
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .demo-row + .demo-row { margin-top: 16px; }
+
+    /* --- Glass Input --- */
+    .gf-input {
+      width: 100%;
+      max-width: 360px;
+      padding: 12px 18px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--gf-text);
+      background: var(--gf-bg);
+      border: 1px solid var(--gf-border);
+      border-radius: 14px;
+      outline: none;
+      transition: all 0.3s ease;
+      -webkit-backdrop-filter: blur(16px) saturate(1.8);
+      backdrop-filter: blur(16px) saturate(1.8);
+      box-shadow: var(--gf-shadow);
+    }
+    .gf-input::placeholder { color: var(--gf-text-secondary); opacity: 0.6; }
+    .gf-input:focus {
+      border-color: var(--gf-accent);
+      box-shadow: var(--gf-shadow), 0 0 0 3px rgba(var(--gf-accent-rgb), 0.15);
+    }
+
+    /* --- Glass Badge --- */
+    .gf-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 100px;
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+    .gf-badge-default {
+      background: var(--gf-bg);
+      border: 1px solid var(--gf-border);
+      color: var(--gf-text);
+    }
+    .gf-badge-accent {
+      background: var(--gf-accent);
+      border: 1px solid transparent;
+      color: #ffffff;
+    }
+    .gf-badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gf-accent);
+      padding: 0;
+      min-width: 8px;
+    }
+
+    /* --- Glass Tooltip (CSS-only) --- */
+    .gf-tooltip-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .gf-tooltip-wrap .gf-tooltip {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gf-text);
+      background: var(--gf-bg);
+      border: 1px solid var(--gf-border);
+      border-radius: 10px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 100;
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .gf-tooltip-wrap:hover .gf-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* --- Glass Modal --- */
+    .gf-modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--gf-overlay);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .gf-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .gf-modal {
+      background: var(--gf-bg);
+      border: 1px solid var(--gf-border);
+      border-radius: 20px;
+      width: 480px;
+      max-width: 90vw;
+      max-height: 85vh;
+      overflow: auto;
+      padding: 32px;
+      -webkit-backdrop-filter: blur(24px) saturate(1.8);
+      backdrop-filter: blur(24px) saturate(1.8);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+    .gf-modal-overlay.active .gf-modal {
+      transform: scale(1) translateY(0);
+    }
+    .gf-modal::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      pointer-events: none;
+    }
+    .gf-modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(128,128,128,0.2);
+      color: var(--gf-text-secondary);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .gf-modal-close:hover {
+      background: rgba(128,128,128,0.35);
+      transform: scale(1.1);
+    }
+    .gf-modal h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .gf-modal p {
+      color: var(--gf-text-secondary);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* --- Animation Demo --- */
+    .anim-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .anim-box {
+      background: var(--gf-bg);
+      border: 1px solid var(--gf-border);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--gf-shadow);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+      cursor: pointer;
+    }
+    .anim-box:hover {
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: var(--gf-shadow-hover);
+    }
+    .anim-box .icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .anim-box .label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* --- Code Block --- */
+    .code-block {
+      background: var(--gf-bg-solid);
+      border: 1px solid var(--gf-border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--gf-border);
+      background: var(--gf-bg);
+    }
+    .code-header .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .code-header .dots span {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .code-header .dots span:nth-child(1) { background: #ff5f57; }
+    .code-header .dots span:nth-child(2) { background: #ffbd2e; }
+    .code-header .dots span:nth-child(3) { background: #28ca42; }
+    .code-header .lang {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gf-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .code-body {
+      padding: 20px 24px;
+      overflow-x: auto;
+    }
+    .code-body pre {
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--gf-text);
+      margin: 0;
+      white-space: pre;
+    }
+    .code-body .kw { color: var(--gf-accent); }
+    .code-body .str { color: #10b981; }
+    .code-body .cmt { color: var(--gf-text-secondary); font-style: italic; }
+    .code-body .tag { color: #ff5078; }
+    .code-body .attr { color: #a855f7; }
+
+    /* --- Footer --- */
+    .footer {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--gf-text-secondary);
+      font-size: 14px;
+    }
+    .footer a {
+      color: var(--gf-accent);
+      text-decoration: none;
+    }
+    .footer a:hover { text-decoration: underline; }
+
+    /* --- Scroll Reveal --- */
+    [data-gf-reveal] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    [data-gf-reveal].gf-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .gf-nav { padding: 10px 16px; }
+      .gf-nav-links { display: none; }
+      .hero { padding: 100px 16px 60px; }
+      .section { padding: 60px 0; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .demo-box { padding: 24px; }
+      .container { padding: 0 16px; }
+    }
+
+    /* --- Ripple Animation --- */
+    @keyframes gf-ripple-anim {
+      0%   { transform: scale(0); opacity: 1; }
+      100% { transform: scale(1); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Decoration -->
+  <div class="bg-decoration">
+    <div class="bg-blob"></div>
+    <div class="bg-blob"></div>
+    <div class="bg-blob"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="gf-nav" data-gf-glass>
+    <a href="#" class="gf-nav-brand">
+      <span class="logo">G</span>
+      GlassFlow
+    </a>
+    <ul class="gf-nav-links">
+      <li><a href="#components">Components</a></li>
+      <li><a href="#themes">Themes</a></li>
+      <li><a href="#animations">Animations</a></li>
+      <li><a href="#code">Code</a></li>
+    </ul>
+    <button class="nav-theme-toggle" id="navThemeToggle" title="Toggle dark/light mode">&#9790;</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-badge" data-gf-reveal>
+      <span class="dot"></span>
+      v1.0.0 - Now Available
+    </div>
+    <h1 data-gf-reveal data-gf-delay="100">
+      Liquid Glass<br /><span class="accent">UI Library</span>
+    </h1>
+    <p data-gf-reveal data-gf-delay="200">
+      A framework-agnostic component library inspired by Apple's liquid glass design.
+      Beautiful, performant, and ready for production.
+    </p>
+    <div class="hero-actions" data-gf-reveal data-gf-delay="300">
+      <a href="#components" class="gf-btn gf-btn-primary" data-gf-ripple>Explore Components</a>
+      <a href="#code" class="gf-btn gf-btn-glass" data-gf-ripple>View Code</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header" data-gf-reveal>
+        <span class="section-label">Features</span>
+        <h2 class="section-title">Why GlassFlow?</h2>
+        <p class="section-desc">Built with modern web standards for maximum compatibility and performance.</p>
+      </div>
+      <div class="grid-3">
+        <div class="gf-card" data-gf-reveal data-gf-delay="0" data-gf-ripple>
+          <h3>Framework Agnostic</h3>
+          <p>Works with React, Vue, Svelte, Angular, or plain HTML. No dependencies required.</p>
+        </div>
+        <div class="gf-card" data-gf-reveal data-gf-delay="100" data-gf-ripple>
+          <h3>Web Components</h3>
+          <p>Built on Custom Elements and Shadow DOM for true encapsulation and reusability.</p>
+        </div>
+        <div class="gf-card" data-gf-reveal data-gf-delay="200" data-gf-ripple>
+          <h3>6 Preset Themes</h3>
+          <p>Light, Dark, Aurora, Ocean, Rose, and Emerald. Switch themes at runtime instantly.</p>
+        </div>
+        <div class="gf-card" data-gf-reveal data-gf-delay="300" data-gf-ripple>
+          <h3>Liquid Animations</h3>
+          <p>Spring physics, ripple effects, scroll reveals, and mouse-tracking highlights.</p>
+        </div>
+        <div class="gf-card" data-gf-reveal data-gf-delay="400" data-gf-ripple>
+          <h3>Zero Dependencies</h3>
+          <p>No external libraries. Pure vanilla JavaScript with optimal bundle size.</p>
+        </div>
+        <div class="gf-card" data-gf-reveal data-gf-delay="500" data-gf-ripple>
+          <h3>Accessible</h3>
+          <p>ARIA attributes, keyboard navigation, and reduced motion support built in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Theme Switcher Section -->
+  <section class="section" id="themes">
+    <div class="container">
+      <div class="section-header" data-gf-reveal>
+        <span class="section-label">Themes</span>
+        <h2 class="section-title">Choose Your Theme</h2>
+        <p class="section-desc">Six carefully crafted themes. Switch in real-time with a single API call.</p>
+      </div>
+      <div class="theme-switcher" data-gf-reveal>
+        <div class="theme-item">
+          <button class="theme-btn theme-btn-light active" data-theme="light" title="Light"></button>
+          <span class="theme-label">Light</span>
+        </div>
+        <div class="theme-item">
+          <button class="theme-btn theme-btn-dark" data-theme="dark" title="Dark"></button>
+          <span class="theme-label">Dark</span>
+        </div>
+        <div class="theme-item">
+          <button class="theme-btn theme-btn-aurora" data-theme="aurora" title="Aurora"></button>
+          <span class="theme-label">Aurora</span>
+        </div>
+        <div class="theme-item">
+          <button class="theme-btn theme-btn-ocean" data-theme="ocean" title="Ocean"></button>
+          <span class="theme-label">Ocean</span>
+        </div>
+        <div class="theme-item">
+          <button class="theme-btn theme-btn-rose" data-theme="rose" title="Rose"></button>
+          <span class="theme-label">Rose</span>
+        </div>
+        <div class="theme-item">
+          <button class="theme-btn theme-btn-emerald" data-theme="emerald" title="Emerald"></button>
+          <span class="theme-label">Emerald</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Components Section -->
+  <section class="section" id="components">
+    <div class="container">
+      <div class="section-header" data-gf-reveal>
+        <span class="section-label">Components</span>
+        <h2 class="section-title">Glass Components</h2>
+        <p class="section-desc">Every component is a Web Component with Shadow DOM encapsulation.</p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Buttons Demo -->
+        <div class="demo-box" data-gf-reveal>
+          <div class="demo-box-title">Buttons</div>
+          <div class="demo-row">
+            <button class="gf-btn gf-btn-primary" data-gf-ripple>Primary</button>
+            <button class="gf-btn gf-btn-glass" data-gf-ripple>Glass</button>
+            <button class="gf-btn gf-btn-glass" data-gf-ripple style="opacity:0.5; pointer-events:none;">Disabled</button>
+          </div>
+          <div class="demo-row">
+            <button class="gf-btn gf-btn-primary" data-gf-ripple style="padding:8px 16px; font-size:13px;">Small</button>
+            <button class="gf-btn gf-btn-primary" data-gf-ripple>Medium</button>
+            <button class="gf-btn gf-btn-primary" data-gf-ripple style="padding:16px 36px; font-size:17px;">Large</button>
+          </div>
+        </div>
+
+        <!-- Inputs Demo -->
+        <div class="demo-box" data-gf-reveal data-gf-delay="100">
+          <div class="demo-box-title">Inputs</div>
+          <div class="demo-row" style="flex-direction:column; align-items:stretch; gap:16px;">
+            <input class="gf-input" type="text" placeholder="Enter your name..." />
+            <input class="gf-input" type="email" placeholder="email@example.com" />
+            <input class="gf-input" type="search" placeholder="Search..." />
+          </div>
+        </div>
+
+        <!-- Badges Demo -->
+        <div class="demo-box" data-gf-reveal>
+          <div class="demo-box-title">Badges</div>
+          <div class="demo-row">
+            <span class="gf-badge gf-badge-default">Default</span>
+            <span class="gf-badge gf-badge-accent">New</span>
+            <span class="gf-badge gf-badge-default">v1.0</span>
+            <span class="gf-badge gf-badge-accent">Pro</span>
+          </div>
+          <div class="demo-row">
+            <span class="gf-badge gf-badge-dot"></span>
+            <span style="color:var(--gf-text-secondary); font-size:13px;">Online</span>
+            <span class="gf-badge gf-badge-dot" style="background:#ff3b30;"></span>
+            <span style="color:var(--gf-text-secondary); font-size:13px;">Busy</span>
+            <span class="gf-badge gf-badge-dot" style="background:#ffcc00;"></span>
+            <span style="color:var(--gf-text-secondary); font-size:13px;">Away</span>
+          </div>
+        </div>
+
+        <!-- Tooltips Demo -->
+        <div class="demo-box" data-gf-reveal data-gf-delay="100">
+          <div class="demo-box-title">Tooltips</div>
+          <div class="demo-row">
+            <div class="gf-tooltip-wrap">
+              <button class="gf-btn gf-btn-glass" data-gf-ripple>Hover me</button>
+              <span class="gf-tooltip">Hello from tooltip!</span>
+            </div>
+            <div class="gf-tooltip-wrap">
+              <button class="gf-btn gf-btn-primary" data-gf-ripple>Info</button>
+              <span class="gf-tooltip">GlassFlow UI v1.0.0</span>
+            </div>
+            <div class="gf-tooltip-wrap">
+              <span class="gf-badge gf-badge-accent">API</span>
+              <span class="gf-tooltip">RESTful API Available</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Trigger -->
+      <div style="text-align:center; margin-top:40px;" data-gf-reveal>
+        <button class="gf-btn gf-btn-primary" data-gf-ripple id="openModalBtn">Open Glass Modal</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Web Components Section -->
+  <section class="section" id="webcomponents">
+    <div class="container">
+      <div class="section-header" data-gf-reveal>
+        <span class="section-label">Web Components</span>
+        <h2 class="section-title">Custom Elements</h2>
+        <p class="section-desc">Use declarative HTML tags with Shadow DOM encapsulation.</p>
+      </div>
+      <div class="grid-3">
+        <div data-gf-reveal>
+          <glass-card hoverable>
+            <h3>glass-card</h3>
+            <p>This is a Web Component with Shadow DOM. Fully encapsulated styles.</p>
+          </glass-card>
+        </div>
+        <div data-gf-reveal data-gf-delay="100">
+          <glass-card hoverable>
+            <h3>Declarative API</h3>
+            <p>Just use HTML tags. No JavaScript required for basic usage.</p>
+          </glass-card>
+        </div>
+        <div data-gf-reveal data-gf-delay="200">
+          <glass-card hoverable>
+            <h3>Theme Aware</h3>
+            <p>Components automatically inherit the active theme variables.</p>
+          </glass-card>
+        </div>
+      </div>
+      <div class="demo-box" style="margin-top:24px;" data-gf-reveal>
+        <div class="demo-box-title">Web Component Buttons</div>
+        <div class="demo-row">
+          <glass-button variant="filled" size="large">Filled Button</glass-button>
+          <glass-button size="large">Glass Button</glass-button>
+          <glass-button variant="outline" size="large">Outline</glass-button>
+          <glass-button variant="ghost" size="large">Ghost</glass-button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Animation Section -->
+  <section class="section" id="animations">
+    <div class="container">
+      <div class="section-header" data-gf-reveal>
+        <span class="section-label">Animations</span>
+        <h2 class="section-title">Liquid Motion</h2>
+        <p class="section-desc">Spring physics, ripple effects, and scroll-driven reveals.</p>
+      </div>
+      <div class="anim-grid">
+        <div class="anim-box" data-gf-reveal data-gf-ripple>
+          <span class="icon">&#127912;</span>
+          <span class="label">Spring Hover</span>
+        </div>
+        <div class="anim-box" data-gf-reveal data-gf-delay="80" data-gf-ripple>
+          <span class="icon">&#128161;</span>
+          <span class="label">Ripple Click</span>
+        </div>
+        <div class="anim-box" data-gf-reveal data-gf-delay="160" data-gf-ripple>
+          <span class="icon">&#128300;</span>
+          <span class="label">Scroll Reveal</span>
+        </div>
+        <div class="anim-box" data-gf-reveal data-gf-delay="240" data-gf-ripple>
+          <span class="icon">&#128065;</span>
+          <span class="label">Mouse Light</span>
+        </div>
+        <div class="anim-box" data-gf-reveal data-gf-delay="320" data-gf-ripple>
+          <span class="icon">&#127752;</span>
+          <span class="label">Theme Switch</span>
+        </div>
+        <div class="anim-box" data-gf-reveal data-gf-delay="400" data-gf-ripple>
+          <span class="icon">&#128640;</span>
+          <span class="label">Elastic Scale</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Examples Section -->
+  <section class="section" id="code">
+    <div class="container">
+      <div class="section-header" data-gf-reveal>
+        <span class="section-label">Usage</span>
+        <h2 class="section-title">Quick Start</h2>
+        <p class="section-desc">Get started in seconds with your preferred framework.</p>
+      </div>
+
+      <div class="grid-2">
+        <!-- HTML Usage -->
+        <div class="code-block" data-gf-reveal>
+          <div class="code-header">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="lang">HTML</span>
+          </div>
+          <div class="code-body">
+<pre><span class="cmt">&lt;!-- Include GlassFlow --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"glassflow.css"</span><span class="tag">/&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="str">"glassflow.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="str">"glassflow-components.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+
+<span class="cmt">&lt;!-- Use glass components --&gt;</span>
+<span class="tag">&lt;glass-card</span> <span class="attr">hoverable</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h3&gt;</span>Hello Glass!<span class="tag">&lt;/h3&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Liquid glass design.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/glass-card&gt;</span>
+
+<span class="tag">&lt;glass-button</span> <span class="attr">variant</span>=<span class="str">"filled"</span><span class="tag">&gt;</span>
+  Click Me
+<span class="tag">&lt;/glass-button&gt;</span>
+
+<span class="tag">&lt;glass-input</span> <span class="attr">label</span>=<span class="str">"Email"</span>
+  <span class="attr">placeholder</span>=<span class="str">"you@example.com"</span><span class="tag">/&gt;</span></pre>
+          </div>
+        </div>
+
+        <!-- React Usage -->
+        <div class="code-block" data-gf-reveal data-gf-delay="100">
+          <div class="code-header">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="lang">React</span>
+          </div>
+          <div class="code-body">
+<pre><span class="kw">import</span> { GlassFlow } <span class="kw">from</span> <span class="str">'glassflow-ui'</span>;
+
+<span class="cmt">// Initialize in your app</span>
+<span class="kw">useEffect</span>(() =&gt; {
+  GlassFlow.init({ theme: <span class="str">'dark'</span> });
+}, []);
+
+<span class="kw">function</span> <span class="kw">App</span>() {
+  <span class="kw">return</span> (
+    <span class="tag">&lt;div&gt;</span>
+      <span class="tag">&lt;glass-card</span> <span class="attr">hoverable</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;h3&gt;</span>React + GlassFlow<span class="tag">&lt;/h3&gt;</span>
+        <span class="tag">&lt;p&gt;</span>Seamless integration.<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;/glass-card&gt;</span>
+
+      <span class="tag">&lt;glass-button</span>
+        <span class="attr">variant</span>=<span class="str">"filled"</span>
+        <span class="attr">onClick</span>={() =&gt; alert(<span class="str">'Hi!'</span>)}
+      <span class="tag">&gt;</span>
+        Get Started
+      <span class="tag">&lt;/glass-button&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}</pre>
+          </div>
+        </div>
+
+        <!-- Vue Usage -->
+        <div class="code-block" data-gf-reveal>
+          <div class="code-header">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="lang">Vue</span>
+          </div>
+          <div class="code-body">
+<pre><span class="tag">&lt;template&gt;</span>
+  <span class="tag">&lt;glass-card</span> <span class="attr">hoverable</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h3&gt;</span>Vue + GlassFlow<span class="tag">&lt;/h3&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Works with Vue 3.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/glass-card&gt;</span>
+
+  <span class="tag">&lt;glass-input</span>
+    <span class="attr">v-model</span>=<span class="str">"email"</span>
+    <span class="attr">label</span>=<span class="str">"Email"</span>
+    <span class="attr">placeholder</span>=<span class="str">"you@example.com"</span>
+  <span class="tag">/&gt;</span>
+<span class="tag">&lt;/template&gt;</span>
+
+<span class="tag">&lt;script setup&gt;</span>
+<span class="kw">import</span> { onMounted, ref } <span class="kw">from</span> <span class="str">'vue'</span>
+<span class="kw">import</span> { GlassFlow } <span class="kw">from</span> <span class="str">'glassflow-ui'</span>
+
+<span class="kw">onMounted</span>(() =&gt; {
+  GlassFlow.init({ theme: <span class="str">'ocean'</span> })
+})
+
+<span class="kw">const</span> email = ref(<span class="str">''</span>)
+<span class="tag">&lt;/script&gt;</span></pre>
+          </div>
+        </div>
+
+        <!-- JavaScript API -->
+        <div class="code-block" data-gf-reveal data-gf-delay="100">
+          <div class="code-header">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="lang">JavaScript</span>
+          </div>
+          <div class="code-body">
+<pre><span class="cmt">// Initialize with options</span>
+<span class="kw">const</span> gf = <span class="kw">new</span> GlassFlow({
+  theme: <span class="str">'auto'</span>,
+  blur: 20,
+  mouseLightEnabled: <span class="kw">true</span>,
+}).init();
+
+<span class="cmt">// Switch theme at runtime</span>
+gf.setTheme(<span class="str">'aurora'</span>);
+
+<span class="cmt">// Listen for events</span>
+gf.on(<span class="str">'themechange'</span>, (e) =&gt; {
+  console.log(<span class="str">`Theme: ${e.theme}`</span>);
+});
+
+<span class="cmt">// Programmatic ripple</span>
+gf.ripple(<span class="str">'.my-element'</span>, x, y);
+
+<span class="cmt">// Spring animation</span>
+gf.spring(<span class="str">'.my-element'</span>, <span class="str">'transform'</span>, 1.05);
+
+<span class="cmt">// Cleanup</span>
+gf.destroy();</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>GlassFlow UI v1.0.0 &mdash; MIT License</p>
+    <p style="margin-top:8px;">Built with vanilla JavaScript &amp; Web Components</p>
+  </footer>
+
+  <!-- Modal -->
+  <div class="gf-modal-overlay" id="modalOverlay">
+    <div class="gf-modal">
+      <button class="gf-modal-close" id="modalClose">&times;</button>
+      <h2>Glass Modal</h2>
+      <p>This is a liquid glass modal dialog. It features backdrop blur, spring animations, and full theme support. Click outside or press Escape to close.</p>
+      <div style="margin-top:24px; display:flex; gap:12px;">
+        <button class="gf-btn gf-btn-primary" data-gf-ripple>Confirm</button>
+        <button class="gf-btn gf-btn-glass" data-gf-ripple id="modalCancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inline JavaScript (Core Library + Components + Demo Logic) -->
+  <script>
+  /**
+   * GlassFlow UI - Core Library (Inline for demo portability)
+   * @license MIT
+   */
+  ;(function (root, factory) {
+    if (typeof define === 'function' && define.amd) { define([], factory) }
+    else if (typeof module === 'object' && module.exports) { module.exports = factory() }
+    else { root.GlassFlow = factory() }
+  })(typeof self !== 'undefined' ? self : this, function () {
+    'use strict'
+
+    const DEFAULTS = {
+      theme: 'auto', blur: 20, frost: 0.6, saturation: 1.8, brightness: 1.1,
+      borderRadius: 24, animationDuration: 600,
+      animationEasing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+      rippleDuration: 800, scrollThreshold: 0.15,
+      mouseLightEnabled: true, mouseLightRadius: 300, mouseLightOpacity: 0.12,
+    }
+
+    const THEMES = {
+      light: {
+        '--gf-bg':'rgba(255,255,255,0.55)','--gf-bg-solid':'#f2f2f7',
+        '--gf-border':'rgba(255,255,255,0.7)','--gf-text':'#1d1d1f',
+        '--gf-text-secondary':'#86868b','--gf-shadow':'0 8px 32px rgba(0,0,0,0.08)',
+        '--gf-shadow-hover':'0 12px 48px rgba(0,0,0,0.12)','--gf-accent':'#007aff',
+        '--gf-accent-rgb':'0, 122, 255','--gf-surface':'#ffffff',
+        '--gf-overlay':'rgba(0,0,0,0.3)','--gf-ripple':'rgba(0,0,0,0.08)',
+        '--gf-mouse-light':'rgba(255,255,255,0.5)','--gf-refraction':'0.8',
+        '--gf-caustics':'rgba(255,255,255,0.15)','--gf-nav-bg':'rgba(255,255,255,0.72)',
+      },
+      dark: {
+        '--gf-bg':'rgba(30,30,30,0.65)','--gf-bg-solid':'#1c1c1e',
+        '--gf-border':'rgba(255,255,255,0.12)','--gf-text':'#f5f5f7',
+        '--gf-text-secondary':'#98989d','--gf-shadow':'0 8px 32px rgba(0,0,0,0.3)',
+        '--gf-shadow-hover':'0 12px 48px rgba(0,0,0,0.4)','--gf-accent':'#0a84ff',
+        '--gf-accent-rgb':'10, 132, 255','--gf-surface':'#2c2c2e',
+        '--gf-overlay':'rgba(0,0,0,0.6)','--gf-ripple':'rgba(255,255,255,0.1)',
+        '--gf-mouse-light':'rgba(255,255,255,0.15)','--gf-refraction':'0.6',
+        '--gf-caustics':'rgba(255,255,255,0.05)','--gf-nav-bg':'rgba(28,28,30,0.72)',
+      },
+      aurora: {
+        '--gf-bg':'rgba(20,20,40,0.6)','--gf-bg-solid':'#14142a',
+        '--gf-border':'rgba(120,80,255,0.25)','--gf-text':'#e8e0ff',
+        '--gf-text-secondary':'#a89cc8','--gf-shadow':'0 8px 32px rgba(80,40,200,0.2)',
+        '--gf-shadow-hover':'0 12px 48px rgba(80,40,200,0.35)','--gf-accent':'#a855f7',
+        '--gf-accent-rgb':'168, 85, 247','--gf-surface':'#1e1e3a',
+        '--gf-overlay':'rgba(10,10,30,0.7)','--gf-ripple':'rgba(168,85,247,0.15)',
+        '--gf-mouse-light':'rgba(168,85,247,0.2)','--gf-refraction':'0.7',
+        '--gf-caustics':'rgba(168,85,247,0.08)','--gf-nav-bg':'rgba(20,20,40,0.75)',
+      },
+      ocean: {
+        '--gf-bg':'rgba(10,40,60,0.6)','--gf-bg-solid':'#0a283c',
+        '--gf-border':'rgba(0,180,216,0.25)','--gf-text':'#d0f0ff',
+        '--gf-text-secondary':'#7ab8d0','--gf-shadow':'0 8px 32px rgba(0,100,150,0.2)',
+        '--gf-shadow-hover':'0 12px 48px rgba(0,100,150,0.35)','--gf-accent':'#00b4d8',
+        '--gf-accent-rgb':'0, 180, 216','--gf-surface':'#0e3450',
+        '--gf-overlay':'rgba(5,20,35,0.7)','--gf-ripple':'rgba(0,180,216,0.15)',
+        '--gf-mouse-light':'rgba(0,180,216,0.2)','--gf-refraction':'0.7',
+        '--gf-caustics':'rgba(0,180,216,0.08)','--gf-nav-bg':'rgba(10,40,60,0.75)',
+      },
+      rose: {
+        '--gf-bg':'rgba(60,20,40,0.6)','--gf-bg-solid':'#3c1428',
+        '--gf-border':'rgba(255,80,120,0.25)','--gf-text':'#ffe0ea',
+        '--gf-text-secondary':'#d08aa0','--gf-shadow':'0 8px 32px rgba(200,40,80,0.2)',
+        '--gf-shadow-hover':'0 12px 48px rgba(200,40,80,0.35)','--gf-accent':'#ff5078',
+        '--gf-accent-rgb':'255, 80, 120','--gf-surface':'#4a1a30',
+        '--gf-overlay':'rgba(30,10,20,0.7)','--gf-ripple':'rgba(255,80,120,0.15)',
+        '--gf-mouse-light':'rgba(255,80,120,0.2)','--gf-refraction':'0.7',
+        '--gf-caustics':'rgba(255,80,120,0.08)','--gf-nav-bg':'rgba(60,20,40,0.75)',
+      },
+      emerald: {
+        '--gf-bg':'rgba(15,50,35,0.6)','--gf-bg-solid':'#0f3223',
+        '--gf-border':'rgba(16,185,129,0.25)','--gf-text':'#d0ffe8',
+        '--gf-text-secondary':'#7ac0a0','--gf-shadow':'0 8px 32px rgba(0,120,80,0.2)',
+        '--gf-shadow-hover':'0 12px 48px rgba(0,120,80,0.35)','--gf-accent':'#10b981',
+        '--gf-accent-rgb':'16, 185, 129','--gf-surface':'#134030',
+        '--gf-overlay':'rgba(8,25,18,0.7)','--gf-ripple':'rgba(16,185,129,0.15)',
+        '--gf-mouse-light':'rgba(16,185,129,0.2)','--gf-refraction':'0.7',
+        '--gf-caustics':'rgba(16,185,129,0.08)','--gf-nav-bg':'rgba(15,50,35,0.75)',
+      },
+    }
+
+    function mergeOptions(t, s) { return Object.assign({}, t, ...Object.keys(s).map(k => s[k] !== undefined ? {[k]: s[k]} : {})) }
+    function prefersDark() { return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches }
+    function resolveTheme(t) { return t === 'auto' ? (prefersDark() ? 'dark' : 'light') : t }
+    function debounce(fn, d) { let t; return function(...a) { clearTimeout(t); t = setTimeout(() => fn.apply(this, a), d) } }
+
+    function createRipple(e, el, cfg) {
+      const r = el.getBoundingClientRect()
+      const sz = Math.max(r.width, r.height) * 2
+      const x = (e.clientX || r.left + r.width/2) - r.left - sz/2
+      const y = (e.clientY || r.top + r.height/2) - r.top - sz/2
+      const rp = document.createElement('span')
+      rp.className = 'gf-ripple-effect'
+      rp.style.cssText = `position:absolute;border-radius:50%;pointer-events:none;width:${sz}px;height:${sz}px;left:${x}px;top:${y}px;background:var(--gf-ripple,rgba(0,0,0,0.08));transform:scale(0);opacity:1;animation:gf-ripple-anim ${cfg.rippleDuration}ms ease-out forwards;`
+      const pos = getComputedStyle(el).position
+      if (pos === 'static' || pos === '') el.style.position = 'relative'
+      el.style.overflow = 'hidden'
+      el.appendChild(rp)
+      rp.addEventListener('animationend', () => rp.remove())
+    }
+
+    function setupScrollReveal(root, cfg) {
+      const els = root.querySelectorAll('[data-gf-reveal]')
+      if (!els.length) return null
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            const d = parseInt(en.target.dataset.gfDelay || '0', 10)
+            setTimeout(() => en.target.classList.add('gf-revealed'), d)
+            obs.unobserve(en.target)
+          }
+        })
+      }, { threshold: cfg.scrollThreshold })
+      els.forEach(el => obs.observe(el))
+      return obs
+    }
+
+    function setupMouseLight(root, cfg) {
+      const els = root.querySelectorAll('.gf-card, .gf-nav, .gf-panel, .gf-modal, [data-gf-glass]')
+      if (!els.length) return null
+      els.forEach(el => {
+        if (el.querySelector('.gf-mouse-light')) return
+        const l = document.createElement('div')
+        l.className = 'gf-mouse-light'
+        l.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity 0.3s ease;z-index:1;'
+        el.style.position = el.style.position || 'relative'
+        el.style.overflow = 'hidden'
+        el.appendChild(l)
+      })
+      function onMove(e) {
+        els.forEach(el => {
+          const r = el.getBoundingClientRect()
+          const l = el.querySelector('.gf-mouse-light')
+          if (!l) return
+          const x = e.clientX - r.left, y = e.clientY - r.top
+          const rad = cfg.mouseLightRadius
+          const near = x > -rad && x < r.width + rad && y > -rad && y < r.height + rad
+          if (near) {
+            l.style.opacity = cfg.mouseLightOpacity
+            l.style.background = `radial-gradient(circle at ${x}px ${y}px, var(--gf-mouse-light, rgba(255,255,255,0.3)) 0%, transparent 70%)`
+          } else { l.style.opacity = '0' }
+        })
+      }
+      function onLeave() { els.forEach(el => { const l = el.querySelector('.gf-mouse-light'); if (l) l.style.opacity = '0' }) }
+      root.addEventListener('mousemove', debounce(onMove, 8), { passive: true })
+      root.addEventListener('mouseleave', onLeave, { passive: true })
+      return { destroy() { root.removeEventListener('mousemove', onMove); root.removeEventListener('mouseleave', onLeave) } }
+    }
+
+    function applyTheme(target, name) {
+      const v = THEMES[name]
+      if (!v) return
+      for (const [p, val] of Object.entries(v)) target.style.setProperty(p, val)
+    }
+    function removeThemeVars(target) {
+      Object.values(THEMES).flatMap(Object.keys).forEach(p => target.style.removeProperty(p))
+    }
+
+    class GlassFlow {
+      constructor(opts) {
+        this._config = mergeOptions(DEFAULTS, opts || {})
+        this._root = this._config.root || document.documentElement
+        this._currentTheme = null
+        this._observers = []
+        this._mouseLightCleanup = null
+        this._systemMQ = null
+        this._initialized = false
+      }
+      init() {
+        if (this._initialized) return this
+        this._applyCurrentTheme()
+        this._systemMQ = window.matchMedia('(prefers-color-scheme: dark)')
+        this._systemMQ.addEventListener('change', () => {
+          if (this._config.theme === 'auto') {
+            this._applyCurrentTheme()
+            this._emit('themechange', { theme: resolveTheme('auto'), auto: true })
+          }
+        })
+        const so = setupScrollReveal(this._root, this._config)
+        if (so) this._observers.push(so)
+        if (this._config.mouseLightEnabled) this._mouseLightCleanup = setupMouseLight(this._root, this._config)
+        this._setupRippleDelegation()
+        this._initialized = true
+        this._root.setAttribute('data-gf-active', '')
+        this._emit('init', { theme: this._currentTheme })
+        return this
+      }
+      setTheme(name) {
+        if (!THEMES[name] && name !== 'auto') return this
+        this._config.theme = name
+        this._applyCurrentTheme()
+        this._emit('themechange', { theme: this._currentTheme, auto: name === 'auto' })
+        return this
+      }
+      getTheme() { return this._currentTheme }
+      getAvailableThemes() { return Object.keys(THEMES) }
+      getThemeVars(name) { return THEMES[name] || null }
+      setConfig(o) { this._config = mergeOptions(this._config, o); return this }
+      getConfig() { return Object.assign({}, this._config) }
+      ripple(target, x, y) {
+        const el = typeof target === 'string' ? document.querySelector(target) : target
+        if (el) createRipple({ clientX: x, clientY: y }, el, this._config)
+        return this
+      }
+      spring(target, prop, end, dur) {
+        const el = typeof target === 'string' ? document.querySelector(target) : target
+        if (!el) return this
+        const start = parseFloat(getComputedStyle(el)[prop]) || 0
+        const t0 = performance.now()
+        const range = end - start
+        const d = dur || this._config.animationDuration
+        ;(function step(now) {
+          const p = Math.min((now - t0) / d, 1)
+          const s = 1 - Math.exp(-6 * p) * Math.cos(p * Math.PI * 2.5)
+          el.style[prop] = start + range * s + (typeof end === 'string' && end.includes('%') ? '%' : 'px')
+          if (p < 1) requestAnimationFrame(step)
+          else el.style[prop] = end
+        })(t0)
+        return this
+      }
+      refresh() {
+        this._observers.forEach(o => o.disconnect && o.disconnect())
+        this._observers = []
+        const so = setupScrollReveal(this._root, this._config)
+        if (so) this._observers.push(so)
+        if (this._config.mouseLightEnabled) {
+          if (this._mouseLightCleanup) this._mouseLightCleanup.destroy()
+          this._mouseLightCleanup = setupMouseLight(this._root, this._config)
+        }
+        return this
+      }
+      destroy() {
+        this._observers.forEach(o => o.disconnect && o.disconnect())
+        this._observers = []
+        if (this._mouseLightCleanup) { this._mouseLightCleanup.destroy(); this._mouseLightCleanup = null }
+        if (this._systemMQ) { this._systemMQ.removeEventListener('change'); this._systemMQ = null }
+        removeThemeVars(this._root)
+        this._root.querySelectorAll('.gf-mouse-light').forEach(el => el.remove())
+        this._root.removeAttribute('data-gf-active')
+        this._initialized = false
+        this._emit('destroy')
+        return this
+      }
+      on(event, handler) {
+        if (!this._handlers) this._handlers = {}
+        if (!this._handlers[event]) this._handlers[event] = []
+        this._handlers[event].push(handler)
+        return this
+      }
+      off(event, handler) {
+        if (!this._handlers || !this._handlers[event]) return this
+        this._handlers[event] = this._handlers[event].filter(h => h !== handler)
+        return this
+      }
+      _emit(event, detail) {
+        if (!this._handlers || !this._handlers[event]) return
+        this._handlers[event].forEach(h => { try { h(detail) } catch(e) { console.error(e) } })
+        this._root.dispatchEvent(new CustomEvent('gf:' + event, { detail, bubbles: true }))
+      }
+      _applyCurrentTheme() {
+        const r = resolveTheme(this._config.theme)
+        this._currentTheme = r
+        applyTheme(this._root, r)
+        this._root.setAttribute('data-gf-theme', r)
+      }
+      _setupRippleDelegation() {
+        this._root.addEventListener('click', (e) => {
+          const t = e.target.closest('[data-gf-ripple], .gf-btn, .gf-card')
+          if (t) createRipple(e, t, this._config)
+        }, { passive: true })
+      }
+    }
+
+    GlassFlow.init = function(opts) { return new GlassFlow(opts).init() }
+    GlassFlow.setTheme = function(name) {
+      if (!GlassFlow._defaultInstance) GlassFlow._defaultInstance = GlassFlow.init()
+      return GlassFlow._defaultInstance.setTheme(name)
+    }
+    GlassFlow.destroy = function() { if (GlassFlow._defaultInstance) { GlassFlow._defaultInstance.destroy(); GlassFlow._defaultInstance = null } }
+    GlassFlow.getInstance = function() { return GlassFlow._defaultInstance || null }
+    GlassFlow.THEMES = THEMES
+    GlassFlow.DEFAULTS = DEFAULTS
+    return GlassFlow
+  })
+
+  /**
+   * GlassFlow UI - Web Components (Inline for demo portability)
+   * @license MIT
+   */
+  ;(function() {
+    'use strict'
+
+    const GLASS_BASE = `
+      :host { --gf-blur:20px; --gf-frost:0.6; --gf-saturation:1.8; --gf-brightness:1.1;
+        --gf-radius:24px; --gf-accent:#007aff; --gf-accent-rgb:0,122,255;
+        --gf-text:#1d1d1f; --gf-text-secondary:#86868b;
+        --gf-bg:rgba(255,255,255,0.55); --gf-border:rgba(255,255,255,0.7);
+        --gf-shadow:0 8px 32px rgba(0,0,0,0.08); --gf-shadow-hover:0 12px 48px rgba(0,0,0,0.12);
+        --gf-surface:#ffffff; --gf-overlay:rgba(0,0,0,0.3); --gf-ripple:rgba(0,0,0,0.08);
+        --gf-mouse-light:rgba(255,255,255,0.5); --gf-refraction:0.8;
+        --gf-caustics:rgba(255,255,255,0.15); display:block; box-sizing:border-box; }
+      :host([hidden]) { display:none; }
+      *, *::before, *::after { box-sizing:border-box; }
+    `
+
+    function bfCSS(blur, sat, bri) {
+      return `-webkit-backdrop-filter:blur(${blur}) saturate(${sat}) brightness(${bri});backdrop-filter:blur(${blur}) saturate(${sat}) brightness(${bri});`
+    }
+    function numA(el, n, fb) { const v = el.getAttribute(n); return v !== null ? parseFloat(v) : fb }
+    function strA(el, n, fb) { return el.getAttribute(n) || fb }
+
+    const themeCSS = {
+      dark: '--gf-bg:rgba(30,30,30,0.65);--gf-border:rgba(255,255,255,0.12);--gf-text:#f5f5f7;--gf-text-secondary:#98989d;--gf-accent:#0a84ff;--gf-accent-rgb:10,132,255;--gf-shadow:0 8px 32px rgba(0,0,0,0.3);--gf-shadow-hover:0 12px 48px rgba(0,0,0,0.4);--gf-ripple:rgba(255,255,255,0.1);--gf-mouse-light:rgba(255,255,255,0.15);--gf-overlay:rgba(0,0,0,0.6);',
+      aurora: '--gf-bg:rgba(20,20,40,0.6);--gf-border:rgba(120,80,255,0.25);--gf-text:#e8e0ff;--gf-text-secondary:#a89cc8;--gf-accent:#a855f7;--gf-accent-rgb:168,85,247;--gf-shadow:0 8px 32px rgba(80,40,200,0.2);--gf-shadow-hover:0 12px 48px rgba(80,40,200,0.35);--gf-ripple:rgba(168,85,247,0.15);--gf-mouse-light:rgba(168,85,247,0.2);--gf-overlay:rgba(10,10,30,0.7);',
+      ocean: '--gf-bg:rgba(10,40,60,0.6);--gf-border:rgba(0,180,216,0.25);--gf-text:#d0f0ff;--gf-text-secondary:#7ab8d0;--gf-accent:#00b4d8;--gf-accent-rgb:0,180,216;--gf-shadow:0 8px 32px rgba(0,100,150,0.2);--gf-shadow-hover:0 12px 48px rgba(0,100,150,0.35);--gf-ripple:rgba(0,180,216,0.15);--gf-mouse-light:rgba(0,180,216,0.2);--gf-overlay:rgba(5,20,35,0.7);',
+      rose: '--gf-bg:rgba(60,20,40,0.6);--gf-border:rgba(255,80,120,0.25);--gf-text:#ffe0ea;--gf-text-secondary:#d08aa0;--gf-accent:#ff5078;--gf-accent-rgb:255,80,120;--gf-shadow:0 8px 32px rgba(200,40,80,0.2);--gf-shadow-hover:0 12px 48px rgba(200,40,80,0.35);--gf-ripple:rgba(255,80,120,0.15);--gf-mouse-light:rgba(255,80,120,0.2);--gf-overlay:rgba(30,10,20,0.7);',
+      emerald: '--gf-bg:rgba(15,50,35,0.6);--gf-border:rgba(16,185,129,0.25);--gf-text:#d0ffe8;--gf-text-secondary:#7ac0a0;--gf-accent:#10b981;--gf-accent-rgb:16,185,129;--gf-shadow:0 8px 32px rgba(0,120,80,0.2);--gf-shadow-hover:0 12px 48px rgba(0,120,80,0.35);--gf-ripple:rgba(16,185,129,0.15);--gf-mouse-light:rgba(16,185,129,0.2);--gf-overlay:rgba(8,25,18,0.7);',
+    }
+    function getTV(theme) { return themeCSS[theme] || '' }
+
+    // --- glass-card ---
+    class GlassCard extends HTMLElement {
+      constructor() { super(); this.attachShadow({ mode: 'open' }) }
+      static get observedAttributes() { return ['theme','blur','frost','radius','color','padding','hoverable','border'] }
+      connectedCallback() { this.render() }
+      attributeChangedCallback() { if (this.shadowRoot) this.render() }
+      render() {
+        const blur=numA(this,'blur',20), radius=numA(this,'radius',24), pad=strA(this,'padding','24px')
+        const hov=this.hasAttribute('hoverable'), bc=strA(this,'border','var(--gf-border)')
+        const color=strA(this,'color',''), tv=getTV(strA(this,'theme',''))
+        this.shadowRoot.innerHTML = `<style>${GLASS_BASE}
+          .card{background:${color||'var(--gf-bg)'};border:1px solid ${bc};border-radius:${radius}px;padding:${pad};
+          ${bfCSS(blur,1.8,1.1)}box-shadow:var(--gf-shadow);transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s ease;position:relative;overflow:hidden;color:var(--gf-text);${tv}}
+          .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);pointer-events:none}
+          ${hov?'.card:hover{transform:translateY(-4px) scale(1.01);box-shadow:var(--gf-shadow-hover)}':''}
+          .card ::slotted(*){position:relative;z-index:2}
+          .card ::slotted(h1),.card ::slotted(h2),.card ::slotted(h3){margin:0 0 12px;color:var(--gf-text)}
+          .card ::slotted(p){margin:0;color:var(--gf-text-secondary)}</style>
+          <div class="card" part="card"><slot></slot></div>`
+      }
+    }
+
+    // --- glass-button ---
+    class GlassButton extends HTMLElement {
+      constructor() { super(); this.attachShadow({ mode: 'open' }) }
+      static get observedAttributes() { return ['theme','blur','radius','color','size','variant','disabled','full'] }
+      connectedCallback() { this.render(); this._setupRipple() }
+      attributeChangedCallback() { if (this.shadowRoot) this.render() }
+      render() {
+        const blur=numA(this,'blur',16), radius=numA(this,'radius',14)
+        const size=strA(this,'size','medium'), variant=strA(this,'variant','default')
+        const dis=this.hasAttribute('disabled'), full=this.hasAttribute('full')
+        const color=strA(this,'color',''), tv=getTV(strA(this,'theme',''))
+        const sm={small:{p:'8px 16px',f:'13px',h:'32px'},medium:{p:'10px 24px',f:'15px',h:'40px'},large:{p:'14px 32px',f:'17px',h:'48px'}}
+        const s=sm[size]||sm.medium
+        const vs={default:`background:${color||'var(--gf-bg)'};border:1px solid var(--gf-border);color:var(--gf-text);`,
+          filled:'background:var(--gf-accent);border:1px solid transparent;color:#fff;',
+          outline:'background:transparent;border:1.5px solid var(--gf-accent);color:var(--gf-accent);',
+          ghost:'background:transparent;border:1px solid transparent;color:var(--gf-accent);'}
+        this.shadowRoot.innerHTML = `<style>${GLASS_BASE}
+          button{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:${s.p};height:${s.h};font-size:${s.f};font-weight:600;
+          font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Roboto,sans-serif;border-radius:${radius}px;
+          cursor:${dis?'not-allowed':'pointer'};transition:all .3s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;white-space:nowrap;user-select:none;
+          width:${full?'100%':'auto'};${bfCSS(blur,1.8,1.1)}${vs[variant]||vs.default}${tv}${dis?'opacity:.5;pointer-events:none;':''}}
+          button:hover:not(:disabled){transform:translateY(-2px) scale(1.02);box-shadow:var(--gf-shadow-hover)}
+          button:active:not(:disabled){transform:translateY(0) scale(.98)}
+          button::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);pointer-events:none}
+          .rc{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;border-radius:inherit}</style>
+          <button part="button" ${dis?'disabled':''}><span class="rc"></span><slot></slot></button>`
+      }
+      _setupRipple() {
+        const btn=this.shadowRoot.querySelector('button')
+        btn.addEventListener('click',e=>{
+          const r=btn.getBoundingClientRect(),sz=Math.max(r.width,r.height)*2
+          const x=e.clientX-r.left-sz/2,y=e.clientY-r.top-sz/2
+          const rp=document.createElement('span')
+          rp.style.cssText=`position:absolute;border-radius:50%;pointer-events:none;width:${sz}px;height:${sz}px;left:${x}px;top:${y}px;background:var(--gf-ripple,rgba(0,0,0,0.08));transform:scale(0);opacity:1;animation:gf-ripple-anim 600ms ease-out forwards;`
+          btn.querySelector('.rc').appendChild(rp)
+          rp.addEventListener('animationend',()=>rp.remove())
+        })
+      }
+    }
+
+    // --- glass-input ---
+    class GlassInput extends HTMLElement {
+      constructor() { super(); this.attachShadow({ mode: 'open' }); this._value='' }
+      static get observedAttributes() { return ['theme','blur','radius','placeholder','label','type','disabled','value'] }
+      connectedCallback() { this.render(); this._bind() }
+      attributeChangedCallback(n) {
+        if(n==='value'&&this.shadowRoot){const i=this.shadowRoot.querySelector('input');if(i)i.value=this.getAttribute('value')||''}
+        if(this.shadowRoot&&n!=='value')this.render()
+      }
+      get value(){const i=this.shadowRoot?.querySelector('input');return i?i.value:this._value}
+      set value(v){this._value=v;this.setAttribute('value',v)}
+      render() {
+        const blur=numA(this,'blur',16),radius=numA(this,'radius',14)
+        const ph=strA(this,'placeholder','Type here...'),label=strA(this,'label','')
+        const type=strA(this,'type','text'),dis=this.hasAttribute('disabled')
+        const val=strA(this,'value',''),tv=getTV(strA(this,'theme',''))
+        this.shadowRoot.innerHTML=`<style>${GLASS_BASE}
+          .w{display:flex;flex-direction:column;gap:6px;width:100%}
+          .l{font-size:13px;font-weight:600;color:var(--gf-text-secondary);font-family:inherit;padding-left:4px}
+          .ic{position:relative;border-radius:${radius}px;overflow:hidden}
+          input{width:100%;padding:12px 16px;font-size:15px;font-family:inherit;color:var(--gf-text);background:var(--gf-bg);
+          border:1px solid var(--gf-border);border-radius:${radius}px;outline:none;transition:all .3s ease;
+          ${bfCSS(blur,1.8,1.1)}box-shadow:var(--gf-shadow);${dis?'opacity:.5;cursor:not-allowed;':''}${tv}}
+          input::placeholder{color:var(--gf-text-secondary);opacity:.6}
+          input:focus{border-color:var(--gf-accent);box-shadow:var(--gf-shadow),0 0 0 3px rgba(var(--gf-accent-rgb),.15)}</style>
+          <div class="w" part="wrapper">${label?`<label class="l" part="label">${label}</label>`:''}
+          <div class="ic"><input type="${type}" placeholder="${ph}" value="${val}" ${dis?'disabled':''} part="input"/></div></div>`
+      }
+      _bind() {
+        const i=this.shadowRoot.querySelector('input')
+        i.addEventListener('input',()=>{this._value=i.value;this.dispatchEvent(new CustomEvent('gf:input',{detail:{value:i.value},bubbles:true}))})
+        i.addEventListener('change',()=>{this.dispatchEvent(new CustomEvent('gf:change',{detail:{value:i.value},bubbles:true}))})
+      }
+    }
+
+    // --- glass-modal ---
+    class GlassModal extends HTMLElement {
+      constructor() { super(); this.attachShadow({ mode: 'open' }); this._open=false }
+      static get observedAttributes() { return ['theme','blur','radius','open','closable','width'] }
+      connectedCallback() { this.render(); this._bind() }
+      attributeChangedCallback(n) { if(n==='open'){this._open=this.hasAttribute('open');this._toggle()} if(this.shadowRoot&&n!=='open')this.render() }
+      open() { this.setAttribute('open',''); this._open=true; this._toggle() }
+      close() { this.removeAttribute('open'); this._open=false; this._toggle(); this.dispatchEvent(new CustomEvent('gf:close',{bubbles:true})) }
+      render() {
+        const blur=numA(this,'blur',24),radius=numA(this,'radius',20)
+        const cl=this.hasAttribute('closable'),width=strA(this,'width','480px')
+        const isO=this.hasAttribute('open'),tv=getTV(strA(this,'theme',''))
+        this.shadowRoot.innerHTML=`<style>${GLASS_BASE}
+          .ov{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--gf-overlay);display:flex;align-items:center;justify-content:center;z-index:9999;
+          opacity:${isO?1:0};visibility:${isO?'visible':'hidden'};transition:opacity .3s ease,visibility .3s ease;${tv}}
+          .md{background:var(--gf-bg);border:1px solid var(--gf-border);border-radius:${radius}px;width:${width};max-width:90vw;max-height:85vh;overflow:auto;padding:0;
+          ${bfCSS(blur,1.8,1.1)}box-shadow:0 24px 80px rgba(0,0,0,.25);
+          transform:${isO?'scale(1) translateY(0)':'scale(.9) translateY(20px)'};transition:transform .4s cubic-bezier(.34,1.56,.64,1);position:relative}
+          .md::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);pointer-events:none;z-index:1}
+          .cb{position:absolute;top:16px;right:16px;width:28px;height:28px;border-radius:50%;border:none;background:rgba(128,128,128,.2);color:var(--gf-text-secondary);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s ease;z-index:2}
+          .cb:hover{background:rgba(128,128,128,.35);transform:scale(1.1)}
+          .ct{padding:28px}.ct ::slotted(*){position:relative;z-index:2}</style>
+          <div class="ov" part="overlay"><div class="md" part="modal">${cl?'<button class="cb" part="close-btn">&times;</button>':''}
+          <div class="ct"><slot></slot></div></div></div>`
+      }
+      _bind() {
+        const ov=this.shadowRoot.querySelector('.ov')
+        ov.addEventListener('click',e=>{if(e.target===ov)this.close()})
+        const cb=this.shadowRoot.querySelector('.cb')
+        if(cb)cb.addEventListener('click',()=>this.close())
+        this._kh=e=>{if(e.key==='Escape'&&this._open)this.close()}
+        document.addEventListener('keydown',this._kh)
+      }
+      _toggle() {
+        const ov=this.shadowRoot?.querySelector('.ov'),md=this.shadowRoot?.querySelector('.md')
+        if(!ov||!md)return
+        ov.style.opacity=this._open?'1':'0';ov.style.visibility=this._open?'visible':'hidden'
+        md.style.transform=this._open?'scale(1) translateY(0)':'scale(.9) translateY(20px)'
+      }
+      disconnectedCallback() { if(this._kh)document.removeEventListener('keydown',this._kh) }
+    }
+
+    // --- glass-badge ---
+    class GlassBadge extends HTMLElement {
+      constructor() { super(); this.attachShadow({ mode: 'open' }) }
+      static get observedAttributes() { return ['theme','blur','radius','color','variant','size'] }
+      connectedCallback() { this.render() }
+      attributeChangedCallback() { if(this.shadowRoot)this.render() }
+      render() {
+        const blur=numA(this,'blur',12),radius=numA(this,'radius',100)
+        const color=strA(this,'color',''),variant=strA(this,'variant','default')
+        const size=strA(this,'size','medium'),tv=getTV(strA(this,'theme',''))
+        const sm={small:{p:'2px 8px',f:'11px'},medium:{p:'4px 12px',f:'12px'},large:{p:'6px 16px',f:'14px'}}
+        const s=sm[size]||sm.medium
+        const vs={default:`background:${color||'var(--gf-bg)'};border:1px solid var(--gf-border);color:var(--gf-text);`,
+          filled:'background:var(--gf-accent);border:1px solid transparent;color:#fff;',
+          dot:'background:var(--gf-accent);border:none;color:transparent;width:8px;height:8px;padding:0;min-width:8px;'}
+        this.shadowRoot.innerHTML=`<style>${GLASS_BASE}
+          .badge{display:inline-flex;align-items:center;justify-content:center;padding:${s.p};font-size:${s.f};font-weight:600;
+          font-family:inherit;border-radius:${radius}px;line-height:1;white-space:nowrap;${bfCSS(blur,1.8,1.1)}${vs[variant]||vs.default}${tv}}</style>
+          <span class="badge" part="badge"><slot></slot></span>`
+      }
+    }
+
+    // --- glass-tooltip ---
+    class GlassTooltip extends HTMLElement {
+      constructor() { super(); this.attachShadow({ mode: 'open' }) }
+      static get observedAttributes() { return ['theme','blur','content','position','delay'] }
+      connectedCallback() { this.render() }
+      attributeChangedCallback() { if(this.shadowRoot)this.render() }
+      render() {
+        const blur=numA(this,'blur',16),content=strA(this,'content','')
+        const pos=strA(this,'position','top'),tv=getTV(strA(this,'theme',''))
+        const ps={top:'bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);',
+          bottom:'top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-4px);',
+          left:'right:calc(100% + 8px);top:50%;transform:translateY(-50%) translateX(4px);',
+          right:'left:calc(100% + 8px);top:50%;transform:translateY(-50%) translateX(-4px);'}
+        const vs={top:'transform:translateX(-50%) translateY(0);',bottom:'transform:translateX(-50%) translateY(0);',
+          left:'transform:translateY(-50%) translateX(0);',right:'transform:translateY(-50%) translateX(0);'}
+        this.shadowRoot.innerHTML=`<style>${GLASS_BASE}
+          .w{position:relative;display:inline-block}
+          .tip{position:absolute;${ps[pos]||ps.top}padding:8px 14px;font-size:13px;font-weight:500;font-family:inherit;color:var(--gf-text);
+          background:var(--gf-bg);border:1px solid var(--gf-border);border-radius:10px;white-space:nowrap;pointer-events:none;
+          opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease,transform .2s cubic-bezier(.34,1.56,.64,1);z-index:10000;
+          ${bfCSS(blur,1.8,1.1)}box-shadow:0 4px 16px rgba(0,0,0,.12);${tv}}
+          .tip::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);pointer-events:none}
+          .w:hover .tip,.tip.visible{opacity:1;visibility:visible;${vs[pos]||vs.top}}</style>
+          <div class="w" part="wrapper"><span class="slot-content"><slot></slot></span><div class="tip" part="tooltip">${content}</div></div>`
+      }
+      show(){const t=this.shadowRoot?.querySelector('.tip');if(t)t.classList.add('visible')}
+      hide(){const t=this.shadowRoot?.querySelector('.tip');if(t)t.classList.remove('visible')}
+    }
+
+    // Register
+    if(typeof customElements!=='undefined'){
+      if(!customElements.get('glass-card'))customElements.define('glass-card',GlassCard)
+      if(!customElements.get('glass-button'))customElements.define('glass-button',GlassButton)
+      if(!customElements.get('glass-input'))customElements.define('glass-input',GlassInput)
+      if(!customElements.get('glass-modal'))customElements.define('glass-modal',GlassModal)
+      if(!customElements.get('glass-badge'))customElements.define('glass-badge',GlassBadge)
+      if(!customElements.get('glass-tooltip'))customElements.define('glass-tooltip',GlassTooltip)
+    }
+  })()
+
+  /**
+   * Demo Page Logic
+   */
+  ;(function() {
+    'use strict'
+
+    // Initialize GlassFlow
+    const gf = GlassFlow.init({
+      theme: 'light',
+      mouseLightEnabled: true,
+    })
+
+    // --- Theme Switcher Buttons ---
+    const themeButtons = document.querySelectorAll('.theme-btn[data-theme]')
+    themeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const theme = btn.dataset.theme
+        gf.setTheme(theme)
+        // Update active state
+        themeButtons.forEach(b => b.classList.remove('active'))
+        btn.classList.add('active')
+      })
+    })
+
+    // --- Nav Theme Toggle (light/dark quick switch) ---
+    const navToggle = document.getElementById('navThemeToggle')
+    let navDark = false
+    navToggle.addEventListener('click', () => {
+      navDark = !navDark
+      const theme = navDark ? 'dark' : 'light'
+      gf.setTheme(theme)
+      navToggle.innerHTML = navDark ? '&#9788;' : '&#9790;'
+      // Sync theme switcher buttons
+      themeButtons.forEach(b => {
+        b.classList.toggle('active', b.dataset.theme === theme)
+      })
+    })
+
+    // --- Modal ---
+    const modalOverlay = document.getElementById('modalOverlay')
+    const openModalBtn = document.getElementById('openModalBtn')
+    const modalClose = document.getElementById('modalClose')
+    const modalCancel = document.getElementById('modalCancel')
+
+    function openModal() { modalOverlay.classList.add('active') }
+    function closeModal() { modalOverlay.classList.remove('active') }
+
+    openModalBtn.addEventListener('click', openModal)
+    modalClose.addEventListener('click', closeModal)
+    modalCancel.addEventListener('click', closeModal)
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal()
+    })
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal()
+    })
+
+    // --- Smooth scroll for nav links ---
+    document.querySelectorAll('.gf-nav-links a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault()
+        const target = document.querySelector(link.getAttribute('href'))
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    })
+
+    // --- Hero actions smooth scroll ---
+    document.querySelectorAll('.hero-actions a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault()
+        const target = document.querySelector(link.getAttribute('href'))
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    })
+
+  })()
+  </script>
+</body>
+</html>

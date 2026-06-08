@@ -1,0 +1,430 @@
+/**
+ * ============================================================================
+ * GlassFlow UI - Themes Stylesheet
+ * ============================================================================
+ * Description:
+ *   Pre-built color themes for GlassFlow UI component library.
+ *   Includes 6 preset themes: Ocean, Aurora, Sunset, Rose, Midnight, Forest.
+ *   Each theme provides a complete set of color variables for glass effects,
+ *   borders, shadows, and semantic colors.
+ *
+ * Usage:
+ *   Add the theme class to a container element:
+ *   <div class="gf-theme-ocean"> ... glass components ... </div>
+ *
+ * Custom Theme:
+ *   Override CSS custom properties on any element:
+ *   <div style="--gf-theme-primary: #ff6b6b; --gf-theme-glass-bg: ...">
+ *
+ * Dependencies: glassflow-core.css (must be loaded first)
+ * ============================================================================
+ */
+
+
+/* ============================================================================
+ * Theme Variable Structure
+ * ============================================================================
+ * Each theme defines the following variables:
+ *
+ * --gf-theme-primary        : Main accent color
+ * --gf-theme-primary-light  : Lighter variant
+ * --gf-theme-primary-dark   : Darker variant
+ * --gf-theme-secondary      : Secondary accent color
+ * --gf-theme-secondary-light: Lighter secondary variant
+ * --gf-theme-secondary-dark : Darker secondary variant
+ * --gf-theme-accent         : Highlight / pop color
+ * --gf-theme-glass-bg       : Glass background tint (light mode)
+ * --gf-theme-glass-bg-dark  : Glass background tint (dark mode)
+ * --gf-theme-glass-border   : Glass border color
+ * --gf-theme-glass-glow     : Glass glow / shadow color
+ * --gf-theme-glass-hover   : Glass hover background
+ * --gf-theme-text           : Primary text color
+ * --gf-theme-text-secondary: Secondary text color
+ * ============================================================================ */
+
+
+/* ============================================================================
+ * 1. Ocean Theme (海洋蓝)
+ * ============================================================================
+ * A cool, deep blue theme inspired by ocean depths.
+ * Best for: Professional, corporate, technology products.
+ */
+
+.gf-theme-ocean {
+  --gf-theme-primary: #0077b6;
+  --gf-theme-primary-light: #00b4d8;
+  --gf-theme-primary-dark: #023e8a;
+  --gf-theme-secondary: #0096c7;
+  --gf-theme-secondary-light: #48cae4;
+  --gf-theme-secondary-dark: #0077b6;
+  --gf-theme-accent: #90e0ef;
+
+  /* Glass surface */
+  --gf-theme-glass-bg: rgba(0, 119, 182, 0.12);
+  --gf-theme-glass-bg-dark: rgba(0, 119, 182, 0.2);
+  --gf-theme-glass-border: rgba(0, 180, 216, 0.2);
+  --gf-theme-glass-glow: rgba(0, 119, 182, 0.25);
+  --gf-theme-glass-hover: rgba(0, 119, 182, 0.18);
+
+  /* Text */
+  --gf-theme-text: #023e8a;
+  --gf-theme-text-secondary: #0077b6;
+
+  /* Apply to core variables */
+  --gf-color-primary: var(--gf-theme-primary);
+  --gf-color-primary-light: var(--gf-theme-primary-light);
+  --gf-color-primary-dark: var(--gf-theme-primary-dark);
+  --gf-color-secondary: var(--gf-theme-secondary);
+  --gf-color-secondary-light: var(--gf-theme-secondary-light);
+  --gf-color-secondary-dark: var(--gf-theme-secondary-dark);
+  --gf-color-accent: var(--gf-theme-accent);
+  --gf-glass-bg: var(--gf-theme-glass-bg);
+  --gf-glass-bg-hover: var(--gf-theme-glass-hover);
+  --gf-glass-bg-active: rgba(0, 119, 182, 0.25);
+  --gf-border-color: var(--gf-theme-glass-border);
+  --gf-shadow-glow: 0 0 20px var(--gf-theme-glass-glow);
+}
+
+
+/* ============================================================================
+ * 2. Aurora Theme (极光绿)
+ * ============================================================================
+ * A vibrant green theme inspired by northern lights.
+ * Best for: Eco, health, nature, innovation products.
+ */
+
+.gf-theme-aurora {
+  --gf-theme-primary: #06d6a0;
+  --gf-theme-primary-light: #64dfdf;
+  --gf-theme-primary-dark: #05a67d;
+  --gf-theme-secondary: #1b9aaa;
+  --gf-theme-secondary-light: #48bfe3;
+  --gf-theme-secondary-dark: #137a87;
+  --gf-theme-accent: #b5e48c;
+
+  /* Glass surface */
+  --gf-theme-glass-bg: rgba(6, 214, 160, 0.1);
+  --gf-theme-glass-bg-dark: rgba(6, 214, 160, 0.18);
+  --gf-theme-glass-border: rgba(6, 214, 160, 0.2);
+  --gf-theme-glass-glow: rgba(6, 214, 160, 0.25);
+  --gf-theme-glass-hover: rgba(6, 214, 160, 0.16);
+
+  /* Text */
+  --gf-theme-text: #064e3b;
+  --gf-theme-text-secondary: #059669;
+
+  /* Apply to core variables */
+  --gf-color-primary: var(--gf-theme-primary);
+  --gf-color-primary-light: var(--gf-theme-primary-light);
+  --gf-color-primary-dark: var(--gf-theme-primary-dark);
+  --gf-color-secondary: var(--gf-theme-secondary);
+  --gf-color-secondary-light: var(--gf-theme-secondary-light);
+  --gf-color-secondary-dark: var(--gf-theme-secondary-dark);
+  --gf-color-accent: var(--gf-theme-accent);
+  --gf-glass-bg: var(--gf-theme-glass-bg);
+  --gf-glass-bg-hover: var(--gf-theme-glass-hover);
+  --gf-glass-bg-active: rgba(6, 214, 160, 0.22);
+  --gf-border-color: var(--gf-theme-glass-border);
+  --gf-shadow-glow: 0 0 20px var(--gf-theme-glass-glow);
+}
+
+
+/* ============================================================================
+ * 3. Sunset Theme (日落橙)
+ * ============================================================================
+ * A warm, energetic orange theme inspired by golden hour.
+ * Best for: Creative, social, entertainment, food products.
+ */
+
+.gf-theme-sunset {
+  --gf-theme-primary: #f77f00;
+  --gf-theme-primary-light: #fcbf49;
+  --gf-theme-primary-dark: #d62828;
+  --gf-theme-secondary: #f4a261;
+  --gf-theme-secondary-light: #fcc880;
+  --gf-theme-secondary-dark: #e76f51;
+  --gf-theme-accent: #eae2b7;
+
+  /* Glass surface */
+  --gf-theme-glass-bg: rgba(247, 127, 0, 0.1);
+  --gf-theme-glass-bg-dark: rgba(247, 127, 0, 0.18);
+  --gf-theme-glass-border: rgba(247, 127, 0, 0.2);
+  --gf-theme-glass-glow: rgba(247, 127, 0, 0.25);
+  --gf-theme-glass-hover: rgba(247, 127, 0, 0.16);
+
+  /* Text */
+  --gf-theme-text: #7c2d12;
+  --gf-theme-text-secondary: #c2410c;
+
+  /* Apply to core variables */
+  --gf-color-primary: var(--gf-theme-primary);
+  --gf-color-primary-light: var(--gf-theme-primary-light);
+  --gf-color-primary-dark: var(--gf-theme-primary-dark);
+  --gf-color-secondary: var(--gf-theme-secondary);
+  --gf-color-secondary-light: var(--gf-theme-secondary-light);
+  --gf-color-secondary-dark: var(--gf-theme-secondary-dark);
+  --gf-color-accent: var(--gf-theme-accent);
+  --gf-glass-bg: var(--gf-theme-glass-bg);
+  --gf-glass-bg-hover: var(--gf-theme-glass-hover);
+  --gf-glass-bg-active: rgba(247, 127, 0, 0.22);
+  --gf-border-color: var(--gf-theme-glass-border);
+  --gf-shadow-glow: 0 0 20px var(--gf-theme-glass-glow);
+}
+
+
+/* ============================================================================
+ * 4. Rose Theme (玫瑰粉)
+ * ============================================================================
+ * A soft, elegant pink theme inspired by rose petals.
+ * Best for: Beauty, fashion, lifestyle, wellness products.
+ */
+
+.gf-theme-rose {
+  --gf-theme-primary: #e63975;
+  --gf-theme-primary-light: #f4849c;
+  --gf-theme-primary-dark: #b5174a;
+  --gf-theme-secondary: #c9184a;
+  --gf-theme-secondary-light: #ff758f;
+  --gf-theme-secondary-dark: #a4133c;
+  --gf-theme-accent: #ffb3c6;
+
+  /* Glass surface */
+  --gf-theme-glass-bg: rgba(230, 57, 117, 0.1);
+  --gf-theme-glass-bg-dark: rgba(230, 57, 117, 0.18);
+  --gf-theme-glass-border: rgba(230, 57, 117, 0.2);
+  --gf-theme-glass-glow: rgba(230, 57, 117, 0.25);
+  --gf-theme-glass-hover: rgba(230, 57, 117, 0.16);
+
+  /* Text */
+  --gf-theme-text: #881337;
+  --gf-theme-text-secondary: #be123c;
+
+  /* Apply to core variables */
+  --gf-color-primary: var(--gf-theme-primary);
+  --gf-color-primary-light: var(--gf-theme-primary-light);
+  --gf-color-primary-dark: var(--gf-theme-primary-dark);
+  --gf-color-secondary: var(--gf-theme-secondary);
+  --gf-color-secondary-light: var(--gf-theme-secondary-light);
+  --gf-color-secondary-dark: var(--gf-theme-secondary-dark);
+  --gf-color-accent: var(--gf-theme-accent);
+  --gf-glass-bg: var(--gf-theme-glass-bg);
+  --gf-glass-bg-hover: var(--gf-theme-glass-hover);
+  --gf-glass-bg-active: rgba(230, 57, 117, 0.22);
+  --gf-border-color: var(--gf-theme-glass-border);
+  --gf-shadow-glow: 0 0 20px var(--gf-theme-glass-glow);
+}
+
+
+/* ============================================================================
+ * 5. Midnight Theme (午夜紫)
+ * ============================================================================
+ * A deep, mysterious purple theme inspired by midnight skies.
+ * Best for: Gaming, music, streaming, creative tools.
+ */
+
+.gf-theme-midnight {
+  --gf-theme-primary: #7b2cbf;
+  --gf-theme-primary-light: #c77dff;
+  --gf-theme-primary-dark: #5a189a;
+  --gf-theme-secondary: #9d4edd;
+  --gf-theme-secondary-light: #e0aaff;
+  --gf-theme-secondary-dark: #7b2cbf;
+  --gf-theme-accent: #e0aaff;
+
+  /* Glass surface */
+  --gf-theme-glass-bg: rgba(123, 44, 191, 0.1);
+  --gf-theme-glass-bg-dark: rgba(123, 44, 191, 0.2);
+  --gf-theme-glass-border: rgba(157, 78, 221, 0.2);
+  --gf-theme-glass-glow: rgba(123, 44, 191, 0.3);
+  --gf-theme-glass-hover: rgba(123, 44, 191, 0.16);
+
+  /* Text */
+  --gf-theme-text: #3b0764;
+  --gf-theme-text-secondary: #6b21a8;
+
+  /* Apply to core variables */
+  --gf-color-primary: var(--gf-theme-primary);
+  --gf-color-primary-light: var(--gf-theme-primary-light);
+  --gf-color-primary-dark: var(--gf-theme-primary-dark);
+  --gf-color-secondary: var(--gf-theme-secondary);
+  --gf-color-secondary-light: var(--gf-theme-secondary-light);
+  --gf-color-secondary-dark: var(--gf-theme-secondary-dark);
+  --gf-color-accent: var(--gf-theme-accent);
+  --gf-glass-bg: var(--gf-theme-glass-bg);
+  --gf-glass-bg-hover: var(--gf-theme-glass-hover);
+  --gf-glass-bg-active: rgba(123, 44, 191, 0.24);
+  --gf-border-color: var(--gf-theme-glass-border);
+  --gf-shadow-glow: 0 0 20px var(--gf-theme-glass-glow);
+}
+
+
+/* ============================================================================
+ * 6. Forest Theme (森林绿)
+ * ============================================================================
+ * A natural, calming green theme inspired by dense forests.
+ * Best for: Sustainability, education, finance, productivity products.
+ */
+
+.gf-theme-forest {
+  --gf-theme-primary: #2d6a4f;
+  --gf-theme-primary-light: #52b788;
+  --gf-theme-primary-dark: #1b4332;
+  --gf-theme-secondary: #40916c;
+  --gf-theme-secondary-light: #74c69d;
+  --gf-theme-secondary-dark: #2d6a4f;
+  --gf-theme-accent: #b7e4c7;
+
+  /* Glass surface */
+  --gf-theme-glass-bg: rgba(45, 106, 79, 0.1);
+  --gf-theme-glass-bg-dark: rgba(45, 106, 79, 0.18);
+  --gf-theme-glass-border: rgba(82, 183, 136, 0.2);
+  --gf-theme-glass-glow: rgba(45, 106, 79, 0.25);
+  --gf-theme-glass-hover: rgba(45, 106, 79, 0.16);
+
+  /* Text */
+  --gf-theme-text: #14532d;
+  --gf-theme-text-secondary: #166534;
+
+  /* Apply to core variables */
+  --gf-color-primary: var(--gf-theme-primary);
+  --gf-color-primary-light: var(--gf-theme-primary-light);
+  --gf-color-primary-dark: var(--gf-theme-primary-dark);
+  --gf-color-secondary: var(--gf-theme-secondary);
+  --gf-color-secondary-light: var(--gf-theme-secondary-light);
+  --gf-color-secondary-dark: var(--gf-theme-secondary-dark);
+  --gf-color-accent: var(--gf-theme-accent);
+  --gf-glass-bg: var(--gf-theme-glass-bg);
+  --gf-glass-bg-hover: var(--gf-theme-glass-hover);
+  --gf-glass-bg-active: rgba(45, 106, 79, 0.22);
+  --gf-border-color: var(--gf-theme-glass-border);
+  --gf-shadow-glow: 0 0 20px var(--gf-theme-glass-glow);
+}
+
+
+/* ============================================================================
+ * Dark Mode Overrides for Each Theme
+ * ============================================================================ */
+
+/**
+ * Each theme has a dark mode variant that adjusts glass backgrounds
+ * and text colors for use on dark interfaces.
+ * Usage: <div class="gf-theme-ocean gf-theme-dark">
+ */
+
+/* Ocean Dark */
+.gf-theme-ocean.gf-theme-dark,
+.gf-theme-dark .gf-theme-ocean {
+  --gf-theme-glass-bg: rgba(0, 119, 182, 0.2);
+  --gf-theme-glass-bg-dark: rgba(0, 119, 182, 0.3);
+  --gf-theme-glass-border: rgba(0, 180, 216, 0.12);
+  --gf-theme-glass-glow: rgba(0, 119, 182, 0.35);
+  --gf-theme-glass-hover: rgba(0, 119, 182, 0.28);
+  --gf-theme-text: #90e0ef;
+  --gf-theme-text-secondary: #48cae4;
+}
+
+/* Aurora Dark */
+.gf-theme-aurora.gf-theme-dark,
+.gf-theme-dark .gf-theme-aurora {
+  --gf-theme-glass-bg: rgba(6, 214, 160, 0.18);
+  --gf-theme-glass-bg-dark: rgba(6, 214, 160, 0.28);
+  --gf-theme-glass-border: rgba(6, 214, 160, 0.12);
+  --gf-theme-glass-glow: rgba(6, 214, 160, 0.35);
+  --gf-theme-glass-hover: rgba(6, 214, 160, 0.26);
+  --gf-theme-text: #a7f3d0;
+  --gf-theme-text-secondary: #6ee7b7;
+}
+
+/* Sunset Dark */
+.gf-theme-sunset.gf-theme-dark,
+.gf-theme-dark .gf-theme-sunset {
+  --gf-theme-glass-bg: rgba(247, 127, 0, 0.18);
+  --gf-theme-glass-bg-dark: rgba(247, 127, 0, 0.28);
+  --gf-theme-glass-border: rgba(247, 127, 0, 0.12);
+  --gf-theme-glass-glow: rgba(247, 127, 0, 0.35);
+  --gf-theme-glass-hover: rgba(247, 127, 0, 0.26);
+  --gf-theme-text: #fed7aa;
+  --gf-theme-text-secondary: #fdba74;
+}
+
+/* Rose Dark */
+.gf-theme-rose.gf-theme-dark,
+.gf-theme-dark .gf-theme-rose {
+  --gf-theme-glass-bg: rgba(230, 57, 117, 0.18);
+  --gf-theme-glass-bg-dark: rgba(230, 57, 117, 0.28);
+  --gf-theme-glass-border: rgba(230, 57, 117, 0.12);
+  --gf-theme-glass-glow: rgba(230, 57, 117, 0.35);
+  --gf-theme-glass-hover: rgba(230, 57, 117, 0.26);
+  --gf-theme-text: #fda4af;
+  --gf-theme-text-secondary: #fb7185;
+}
+
+/* Midnight Dark */
+.gf-theme-midnight.gf-theme-dark,
+.gf-theme-dark .gf-theme-midnight {
+  --gf-theme-glass-bg: rgba(123, 44, 191, 0.2);
+  --gf-theme-glass-bg-dark: rgba(123, 44, 191, 0.3);
+  --gf-theme-glass-border: rgba(157, 78, 221, 0.12);
+  --gf-theme-glass-glow: rgba(123, 44, 191, 0.4);
+  --gf-theme-glass-hover: rgba(123, 44, 191, 0.28);
+  --gf-theme-text: #e0aaff;
+  --gf-theme-text-secondary: #c77dff;
+}
+
+/* Forest Dark */
+.gf-theme-forest.gf-theme-dark,
+.gf-theme-dark .gf-theme-forest {
+  --gf-theme-glass-bg: rgba(45, 106, 79, 0.18);
+  --gf-theme-glass-bg-dark: rgba(45, 106, 79, 0.28);
+  --gf-theme-glass-border: rgba(82, 183, 136, 0.12);
+  --gf-theme-glass-glow: rgba(45, 106, 79, 0.35);
+  --gf-theme-glass-hover: rgba(45, 106, 79, 0.26);
+  --gf-theme-text: #a7f3d0;
+  --gf-theme-text-secondary: #6ee7b7;
+}
+
+
+/* ============================================================================
+ * Custom Theme Guide
+ * ============================================================================
+ * To create a custom theme, define the following CSS custom properties
+ * on any container element:
+ *
+ * .my-custom-theme {
+ *   --gf-theme-primary: #your-color;
+ *   --gf-theme-primary-light: #your-lighter-color;
+ *   --gf-theme-primary-dark: #your-darker-color;
+ *   --gf-theme-secondary: #your-secondary-color;
+ *   --gf-theme-secondary-light: #your-secondary-light;
+ *   --gf-theme-secondary-dark: #your-secondary-dark;
+ *   --gf-theme-accent: #your-accent-color;
+ *   --gf-theme-glass-bg: rgba(r, g, b, 0.1);
+ *   --gf-theme-glass-bg-dark: rgba(r, g, b, 0.18);
+ *   --gf-theme-glass-border: rgba(r, g, b, 0.2);
+ *   --gf-theme-glass-glow: rgba(r, g, b, 0.25);
+ *   --gf-theme-glass-hover: rgba(r, g, b, 0.16);
+ *   --gf-theme-text: #your-text-color;
+ *   --gf-theme-text-secondary: #your-secondary-text;
+ *
+ *   // Map to core variables:
+ *   --gf-color-primary: var(--gf-theme-primary);
+ *   --gf-color-primary-light: var(--gf-theme-primary-light);
+ *   --gf-color-primary-dark: var(--gf-theme-primary-dark);
+ *   --gf-color-secondary: var(--gf-theme-secondary);
+ *   --gf-color-secondary-light: var(--gf-theme-secondary-light);
+ *   --gf-color-secondary-dark: var(--gf-theme-secondary-dark);
+ *   --gf-color-accent: var(--gf-theme-accent);
+ *   --gf-glass-bg: var(--gf-theme-glass-bg);
+ *   --gf-glass-bg-hover: var(--gf-theme-glass-hover);
+ *   --gf-glass-bg-active: rgba(r, g, b, 0.22);
+ *   --gf-border-color: var(--gf-theme-glass-border);
+ *   --gf-shadow-glow: 0 0 20px var(--gf-theme-glass-glow);
+ * }
+ *
+ * Tips:
+ * - Glass backgrounds should use low opacity (0.08 - 0.2) for light mode
+ * - Glass backgrounds should use medium opacity (0.15 - 0.3) for dark mode
+ * - Glow colors should be semi-transparent versions of the primary color
+ * - Text colors should have sufficient contrast (WCAG AA minimum)
+ * - Test your theme with both .glass and .glass-dark components
+ * ============================================================================ */

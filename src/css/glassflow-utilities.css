@@ -1,0 +1,651 @@
+/**
+ * ============================================================================
+ * GlassFlow UI - Utilities Stylesheet
+ * ============================================================================
+ * Description:
+ *   Utility classes for fine-tuning glass effects and layout adjustments.
+ *   Includes: blur levels, opacity levels, border styles, border radius,
+ *   shadow levels, chromatic aberration intensity, and responsive breakpoints.
+ *
+ * All utilities follow the BEM-like naming: .{category}-{value}
+ * Utilities are designed to be composable and stackable.
+ *
+ * Dependencies: glassflow-core.css (must be loaded first)
+ * ============================================================================
+ */
+
+
+/* ============================================================================
+ * 1. Blur Level Utilities
+ * ============================================================================ */
+
+/**
+ * Control the backdrop-filter blur intensity on glass elements.
+ * Usage: <div class="glass blur-sm">Light blur</div>
+ */
+
+.blur-sm {
+  -webkit-backdrop-filter: blur(var(--gf-blur-sm)) saturate(120%) !important;
+  backdrop-filter: blur(var(--gf-blur-sm)) saturate(120%) !important;
+}
+
+.blur-md {
+  -webkit-backdrop-filter: blur(var(--gf-blur-md)) saturate(150%) !important;
+  backdrop-filter: blur(var(--gf-blur-md)) saturate(150%) !important;
+}
+
+.blur-lg {
+  -webkit-backdrop-filter: blur(var(--gf-blur-lg)) saturate(180%) !important;
+  backdrop-filter: blur(var(--gf-blur-lg)) saturate(180%) !important;
+}
+
+.blur-xl {
+  -webkit-backdrop-filter: blur(var(--gf-blur-xl)) saturate(200%) !important;
+  backdrop-filter: blur(var(--gf-blur-xl)) saturate(200%) !important;
+}
+
+.blur-none {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Saturate-only utilities */
+.saturate-low {
+  -webkit-backdrop-filter: blur(var(--gf-blur-default)) saturate(100%) !important;
+  backdrop-filter: blur(var(--gf-blur-default)) saturate(100%) !important;
+}
+
+.saturate-high {
+  -webkit-backdrop-filter: blur(var(--gf-blur-default)) saturate(250%) !important;
+  backdrop-filter: blur(var(--gf-blur-default)) saturate(250%) !important;
+}
+
+/* Fallback for browsers without backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+  .blur-sm  { background-color: rgba(255, 255, 255, 0.7) !important; }
+  .blur-md  { background-color: rgba(255, 255, 255, 0.8) !important; }
+  .blur-lg  { background-color: rgba(255, 255, 255, 0.88) !important; }
+  .blur-xl  { background-color: rgba(255, 255, 255, 0.94) !important; }
+  @media (prefers-color-scheme: dark) {
+    .blur-sm  { background-color: rgba(30, 30, 30, 0.7) !important; }
+    .blur-md  { background-color: rgba(30, 30, 30, 0.8) !important; }
+    .blur-lg  { background-color: rgba(30, 30, 30, 0.88) !important; }
+    .blur-xl  { background-color: rgba(30, 30, 30, 0.94) !important; }
+  }
+}
+
+
+/* ============================================================================
+ * 2. Opacity Utilities (Glass-Specific)
+ * ============================================================================ */
+
+/**
+ * Control the background opacity of glass elements.
+ * These adjust the alpha channel of the glass background.
+ * Usage: <div class="glass opacity-glass-30">30% opacity glass</div>
+ */
+
+.opacity-glass-10 {
+  --gf-opacity-default: 0.1;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.opacity-glass-20 {
+  --gf-opacity-default: 0.2;
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.opacity-glass-30 {
+  --gf-opacity-default: 0.3;
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.opacity-glass-40 {
+  --gf-opacity-default: 0.4;
+  background: rgba(255, 255, 255, 0.4) !important;
+}
+
+.opacity-glass-50 {
+  --gf-opacity-default: 0.5;
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+
+.opacity-glass-60 {
+  --gf-opacity-default: 0.6;
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+.opacity-glass-70 {
+  --gf-opacity-default: 0.7;
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+
+.opacity-glass-80 {
+  --gf-opacity-default: 0.8;
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+.opacity-glass-90 {
+  --gf-opacity-default: 0.9;
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Dark mode glass opacity */
+@media (prefers-color-scheme: dark) {
+  .opacity-glass-10 { background: rgba(30, 30, 30, 0.1) !important; }
+  .opacity-glass-20 { background: rgba(30, 30, 30, 0.2) !important; }
+  .opacity-glass-30 { background: rgba(30, 30, 30, 0.3) !important; }
+  .opacity-glass-40 { background: rgba(30, 30, 30, 0.4) !important; }
+  .opacity-glass-50 { background: rgba(30, 30, 30, 0.5) !important; }
+  .opacity-glass-60 { background: rgba(30, 30, 30, 0.6) !important; }
+  .opacity-glass-70 { background: rgba(30, 30, 30, 0.7) !important; }
+  .opacity-glass-80 { background: rgba(30, 30, 30, 0.8) !important; }
+  .opacity-glass-90 { background: rgba(30, 30, 30, 0.9) !important; }
+}
+
+/* Standard opacity utilities (for non-glass use) */
+.opacity-0   { opacity: 0 !important; }
+.opacity-25  { opacity: 0.25 !important; }
+.opacity-50  { opacity: 0.5 !important; }
+.opacity-75  { opacity: 0.75 !important; }
+.opacity-100 { opacity: 1 !important; }
+
+
+/* ============================================================================
+ * 3. Border Style Utilities
+ * ============================================================================ */
+
+/**
+ * Control border properties of glass elements.
+ * Usage: <div class="glass border-glass-highlight">Bright border</div>
+ */
+
+/* Border width */
+.border-0     { border-width: 0 !important; }
+.border       { border-width: var(--gf-border-width) !important; }
+.border-2     { border-width: 2px !important; }
+.border-top    { border-top-width: var(--gf-border-width) !important; }
+.border-bottom { border-bottom-width: var(--gf-border-width) !important; }
+.border-left   { border-left-width: var(--gf-border-width) !important; }
+.border-right  { border-right-width: var(--gf-border-width) !important; }
+
+/* Border color (glass-specific) */
+.border-glass {
+  border-color: var(--gf-border-color) !important;
+}
+
+.border-glass-highlight {
+  border-color: var(--gf-border-highlight) !important;
+}
+
+.border-glass-subtle {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Border color by semantic name */
+.border-primary   { border-color: var(--gf-color-primary) !important; }
+.border-secondary { border-color: var(--gf-color-secondary) !important; }
+.border-success   { border-color: var(--gf-color-success) !important; }
+.border-warning   { border-color: var(--gf-color-warning) !important; }
+.border-danger    { border-color: var(--gf-color-danger) !important; }
+.border-info      { border-color: var(--gf-color-info) !important; }
+
+/* Border style */
+.border-solid { border-style: solid !important; }
+.border-dashed { border-style: dashed !important; }
+.border-dotted { border-style: dotted !important; }
+.border-none { border-style: none !important; }
+
+
+/* ============================================================================
+ * 4. Border Radius Utilities
+ * ============================================================================ */
+
+/**
+ * Control border radius of glass elements.
+ * Usage: <div class="glass rounded-xl">Extra rounded</div>
+ */
+
+.rounded-none { border-radius: 0 !important; }
+.rounded-sm   { border-radius: var(--gf-radius-sm) !important; }
+.rounded-md   { border-radius: var(--gf-radius-md) !important; }
+.rounded-lg   { border-radius: var(--gf-radius-lg) !important; }
+.rounded-xl   { border-radius: var(--gf-radius-xl) !important; }
+.rounded-2xl  { border-radius: var(--gf-radius-2xl) !important; }
+.rounded-full { border-radius: var(--gf-radius-full) !important; }
+
+/* Per-corner radius */
+.rounded-t-sm { border-top-left-radius: var(--gf-radius-sm) !important; border-top-right-radius: var(--gf-radius-sm) !important; }
+.rounded-t-md { border-top-left-radius: var(--gf-radius-md) !important; border-top-right-radius: var(--gf-radius-md) !important; }
+.rounded-t-lg { border-top-left-radius: var(--gf-radius-lg) !important; border-top-right-radius: var(--gf-radius-lg) !important; }
+.rounded-b-sm { border-bottom-left-radius: var(--gf-radius-sm) !important; border-bottom-right-radius: var(--gf-radius-sm) !important; }
+.rounded-b-md { border-bottom-left-radius: var(--gf-radius-md) !important; border-bottom-right-radius: var(--gf-radius-md) !important; }
+.rounded-b-lg { border-bottom-left-radius: var(--gf-radius-lg) !important; border-bottom-right-radius: var(--gf-radius-lg) !important; }
+.rounded-l-sm { border-top-left-radius: var(--gf-radius-sm) !important; border-bottom-left-radius: var(--gf-radius-sm) !important; }
+.rounded-l-md { border-top-left-radius: var(--gf-radius-md) !important; border-bottom-left-radius: var(--gf-radius-md) !important; }
+.rounded-l-lg { border-top-left-radius: var(--gf-radius-lg) !important; border-bottom-left-radius: var(--gf-radius-lg) !important; }
+.rounded-r-sm { border-top-right-radius: var(--gf-radius-sm) !important; border-bottom-right-radius: var(--gf-radius-sm) !important; }
+.rounded-r-md { border-top-right-radius: var(--gf-radius-md) !important; border-bottom-right-radius: var(--gf-radius-md) !important; }
+.rounded-r-lg { border-top-right-radius: var(--gf-radius-lg) !important; border-bottom-right-radius: var(--gf-radius-lg) !important; }
+
+
+/* ============================================================================
+ * 5. Shadow Utilities
+ * ============================================================================ */
+
+/**
+ * Control box-shadow of glass elements.
+ * Usage: <div class="glass shadow-glass-lg">Large shadow</div>
+ */
+
+/* Glass-specific shadows */
+.shadow-glass-sm {
+  box-shadow: var(--gf-shadow-sm) !important;
+}
+
+.shadow-glass-md {
+  box-shadow: var(--gf-shadow-md) !important;
+}
+
+.shadow-glass-lg {
+  box-shadow: var(--gf-shadow-lg) !important;
+}
+
+.shadow-glass-xl {
+  box-shadow: var(--gf-shadow-xl) !important;
+}
+
+.shadow-glass-glow {
+  box-shadow: var(--gf-shadow-glow) !important;
+}
+
+/* No shadow */
+.shadow-none {
+  box-shadow: none !important;
+}
+
+/* Inner glow */
+.shadow-inner-glass {
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.15),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Colored glow shadows */
+.shadow-primary {
+  box-shadow: 0 0 20px rgba(0, 122, 255, 0.3) !important;
+}
+
+.shadow-success {
+  box-shadow: 0 0 20px rgba(52, 199, 89, 0.3) !important;
+}
+
+.shadow-warning {
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.3) !important;
+}
+
+.shadow-danger {
+  box-shadow: 0 0 20px rgba(255, 59, 48, 0.3) !important;
+}
+
+
+/* ============================================================================
+ * 6. Chromatic Aberration Intensity Utilities
+ * ============================================================================ */
+
+/**
+ * Control the intensity of chromatic aberration effect.
+ * Requires .glass-chroma class to be present on the element.
+ * Usage: <div class="glass glass-chroma chroma-strong">Strong chroma</div>
+ */
+
+.chroma-none {
+  --gf-chroma-offset: 0px;
+  --gf-chroma-intensity: 0;
+}
+
+.chroma-subtle {
+  --gf-chroma-offset: 0.5px;
+  --gf-chroma-intensity: 0.3;
+}
+
+.chroma-normal {
+  --gf-chroma-offset: 1px;
+  --gf-chroma-intensity: 0.5;
+}
+
+.chroma-strong {
+  --gf-chroma-offset: 2px;
+  --gf-chroma-intensity: 0.8;
+}
+
+.chroma-intense {
+  --gf-chroma-offset: 3px;
+  --gf-chroma-intensity: 1;
+}
+
+
+/* ============================================================================
+ * 7. Refraction Intensity Utilities
+ * ============================================================================ */
+
+/**
+ * Control the intensity of edge refraction effect.
+ * Requires .glass-refract class to be present on the element.
+ * Usage: <div class="glass glass-refract refract-strong">Strong refraction</div>
+ */
+
+.refract-none {
+  --gf-refraction-intensity: 0;
+}
+
+.refract-subtle {
+  --gf-refraction-intensity: 0.25;
+}
+
+.refract-normal {
+  --gf-refraction-intensity: 0.5;
+}
+
+.refract-strong {
+  --gf-refraction-intensity: 0.8;
+}
+
+.refract-intense {
+  --gf-refraction-intensity: 1;
+}
+
+
+/* ============================================================================
+ * 8. Highlight / Specular Utilities
+ * ============================================================================ */
+
+/**
+ * Control the specular highlight on glass elements.
+ * Usage: <div class="glass highlight-top">Top highlight</div>
+ */
+
+.highlight-top {
+  --gf-highlight-angle: 180deg;
+  --gf-highlight-size: 50%;
+}
+
+.highlight-bottom {
+  --gf-highlight-angle: 0deg;
+  --gf-highlight-size: 50%;
+}
+
+.highlight-left {
+  --gf-highlight-angle: 90deg;
+  --gf-highlight-size: 50%;
+}
+
+.highlight-right {
+  --gf-highlight-angle: 270deg;
+  --gf-highlight-size: 50%;
+}
+
+.highlight-corner {
+  --gf-highlight-angle: 135deg;
+  --gf-highlight-size: 40%;
+}
+
+.highlight-none {
+  --gf-highlight-intensity: 0;
+}
+
+.highlight-subtle {
+  --gf-highlight-intensity: 0.3;
+}
+
+.highlight-normal {
+  --gf-highlight-intensity: 0.6;
+}
+
+.highlight-strong {
+  --gf-highlight-intensity: 0.9;
+}
+
+
+/* ============================================================================
+ * 9. Responsive Breakpoint Utilities
+ * ============================================================================ */
+
+/**
+ * Responsive display and layout utilities.
+ * Breakpoints:
+ *   sm: 640px
+ *   md: 768px
+ *   lg: 1024px
+ *   xl: 1280px
+ *   2xl: 1536px
+ *
+ * Usage: <div class="glass hidden md:visible">Hidden on mobile</div>
+ */
+
+/* -- Display Utilities ------------------------------------------------------ */
+.block    { display: block !important; }
+.inline   { display: inline !important; }
+.inline-block { display: inline-block !important; }
+.flex     { display: flex !important; }
+.inline-flex { display: inline-flex !important; }
+.grid     { display: grid !important; }
+.hidden   { display: none !important; }
+.visible  { visibility: visible !important; }
+.invisible { visibility: hidden !important; }
+
+/* -- Flex Utilities --------------------------------------------------------- */
+.flex-row          { flex-direction: row !important; }
+.flex-col          { flex-direction: column !important; }
+.flex-wrap         { flex-wrap: wrap !important; }
+.flex-nowrap       { flex-wrap: nowrap !important; }
+.items-start       { align-items: flex-start !important; }
+.items-center      { align-items: center !important; }
+.items-end         { align-items: flex-end !important; }
+.justify-start     { justify-content: flex-start !important; }
+.justify-center    { justify-content: center !important; }
+.justify-end       { justify-content: flex-end !important; }
+.justify-between   { justify-content: space-between !important; }
+.flex-1            { flex: 1 !important; }
+.flex-auto         { flex: auto !important; }
+.flex-none         { flex: none !important; }
+.gap-1  { gap: 4px !important; }
+.gap-2  { gap: 8px !important; }
+.gap-3  { gap: 12px !important; }
+.gap-4  { gap: 16px !important; }
+.gap-5  { gap: 20px !important; }
+.gap-6  { gap: 24px !important; }
+.gap-8  { gap: 32px !important; }
+.gap-10 { gap: 40px !important; }
+
+/* -- Spacing Utilities ------------------------------------------------------ */
+.p-0  { padding: 0 !important; }
+.p-1  { padding: 4px !important; }
+.p-2  { padding: 8px !important; }
+.p-3  { padding: 12px !important; }
+.p-4  { padding: 16px !important; }
+.p-5  { padding: 20px !important; }
+.p-6  { padding: 24px !important; }
+.p-8  { padding: 32px !important; }
+.p-10 { padding: 40px !important; }
+
+.px-0  { padding-left: 0 !important; padding-right: 0 !important; }
+.px-2  { padding-left: 8px !important; padding-right: 8px !important; }
+.px-4  { padding-left: 16px !important; padding-right: 16px !important; }
+.px-6  { padding-left: 24px !important; padding-right: 24px !important; }
+.px-8  { padding-left: 32px !important; padding-right: 32px !important; }
+
+.py-0  { padding-top: 0 !important; padding-bottom: 0 !important; }
+.py-2  { padding-top: 8px !important; padding-bottom: 8px !important; }
+.py-4  { padding-top: 16px !important; padding-bottom: 16px !important; }
+.py-6  { padding-top: 24px !important; padding-bottom: 24px !important; }
+.py-8  { padding-top: 32px !important; padding-bottom: 32px !important; }
+
+.m-0  { margin: 0 !important; }
+.m-auto { margin: auto !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
+.mt-2 { margin-top: 8px !important; }
+.mt-4 { margin-top: 16px !important; }
+.mt-6 { margin-top: 24px !important; }
+.mb-2 { margin-bottom: 8px !important; }
+.mb-4 { margin-bottom: 16px !important; }
+.mb-6 { margin-bottom: 24px !important; }
+
+/* -- Width / Height Utilities ---------------------------------------------- */
+.w-full    { width: 100% !important; }
+.w-auto    { width: auto !important; }
+.h-full    { height: 100% !important; }
+.h-auto    { height: auto !important; }
+.h-screen  { height: 100vh !important; }
+.min-w-0   { min-width: 0 !important; }
+.overflow-hidden { overflow: hidden !important; }
+.overflow-auto   { overflow: auto !important; }
+
+/* -- Text Utilities --------------------------------------------------------- */
+.text-left    { text-align: left !important; }
+.text-center  { text-align: center !important; }
+.text-right   { text-align: right !important; }
+.text-xs      { font-size: 0.75rem !important; }
+.text-sm      { font-size: 0.875rem !important; }
+.text-base    { font-size: 1rem !important; }
+.text-lg      { font-size: 1.125rem !important; }
+.text-xl      { font-size: 1.25rem !important; }
+.text-2xl     { font-size: 1.5rem !important; }
+.font-normal  { font-weight: 400 !important; }
+.font-medium  { font-weight: 500 !important; }
+.font-semibold { font-weight: 600 !important; }
+.font-bold    { font-weight: 700 !important; }
+.truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* -- Positioning Utilities -------------------------------------------------- */
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
+.fixed    { position: fixed !important; }
+.sticky   { position: sticky !important; }
+.inset-0  { top: 0; right: 0; bottom: 0; left: 0; }
+.z-0  { z-index: 0 !important; }
+.z-10 { z-index: 10 !important; }
+.z-20 { z-index: 20 !important; }
+.z-30 { z-index: 30 !important; }
+.z-40 { z-index: 40 !important; }
+.z-50 { z-index: 50 !important; }
+
+
+/* ============================================================================
+ * 10. Responsive Breakpoint Prefixes
+ * ============================================================================ */
+
+/**
+ * Apply utilities at specific breakpoints using prefix syntax.
+ * Usage: <div class="hidden md:block">Hidden below md</div>
+ */
+
+/* sm: min-width 640px */
+@media (min-width: 640px) {
+  .sm\:block       { display: block !important; }
+  .sm\:flex        { display: flex !important; }
+  .sm\:hidden      { display: none !important; }
+  .sm\:flex-row    { flex-direction: row !important; }
+  .sm\:flex-col    { flex-direction: column !important; }
+  .sm\:text-left   { text-align: left !important; }
+  .sm\:text-center { text-align: center !important; }
+  .sm\:text-right  { text-align: right !important; }
+  .sm\:w-full      { width: 100% !important; }
+  .sm\:p-4         { padding: 16px !important; }
+  .sm\:p-6         { padding: 24px !important; }
+  .sm\:gap-4       { gap: 16px !important; }
+  .sm\:gap-6       { gap: 24px !important; }
+}
+
+/* md: min-width 768px */
+@media (min-width: 768px) {
+  .md\:block       { display: block !important; }
+  .md\:flex        { display: flex !important; }
+  .md\:inline-flex { display: inline-flex !important; }
+  .md\:grid        { display: grid !important; }
+  .md\:hidden      { display: none !important; }
+  .md\:visible     { visibility: visible !important; }
+  .md\:flex-row    { flex-direction: row !important; }
+  .md\:flex-col    { flex-direction: column !important; }
+  .md\:flex-wrap   { flex-wrap: wrap !important; }
+  .md\:items-center { align-items: center !important; }
+  .md\:justify-between { justify-content: space-between !important; }
+  .md\:text-left   { text-align: left !important; }
+  .md\:text-center { text-align: center !important; }
+  .md\:text-right  { text-align: right !important; }
+  .md\:w-full      { width: 100% !important; }
+  .md\:w-auto      { width: auto !important; }
+  .md\:p-4         { padding: 16px !important; }
+  .md\:p-6         { padding: 24px !important; }
+  .md\:p-8         { padding: 32px !important; }
+  .md\:gap-4       { gap: 16px !important; }
+  .md\:gap-6       { gap: 24px !important; }
+  .md\:gap-8       { gap: 32px !important; }
+}
+
+/* lg: min-width 1024px */
+@media (min-width: 1024px) {
+  .lg\:block       { display: block !important; }
+  .lg\:flex        { display: flex !important; }
+  .lg\:hidden      { display: none !important; }
+  .lg\:flex-row    { flex-direction: row !important; }
+  .lg\:flex-col    { flex-direction: column !important; }
+  .lg\:items-center { align-items: center !important; }
+  .lg\:text-left   { text-align: left !important; }
+  .lg\:text-center { text-align: center !important; }
+  .lg\:w-full      { width: 100% !important; }
+  .lg\:p-6         { padding: 24px !important; }
+  .lg\:p-8         { padding: 32px !important; }
+  .lg\:gap-6       { gap: 24px !important; }
+  .lg\:gap-8       { gap: 32px !important; }
+}
+
+/* xl: min-width 1280px */
+@media (min-width: 1280px) {
+  .xl\:block       { display: block !important; }
+  .xl\:flex        { display: flex !important; }
+  .xl\:hidden      { display: none !important; }
+  .xl\:p-8         { padding: 32px !important; }
+  .xl\:p-10        { padding: 40px !important; }
+  .xl\:gap-8       { gap: 32px !important; }
+}
+
+/* 2xl: min-width 1536px */
+@media (min-width: 1536px) {
+  .\32xl\:block    { display: block !important; }
+  .\32xl\:flex     { display: flex !important; }
+  .\32xl\:hidden   { display: none !important; }
+  .\32xl\:p-10     { padding: 40px !important; }
+  .\32xl\:gap-10   { gap: 40px !important; }
+}
+
+/* Max-width responsive (mobile-first hidden) */
+@media (max-width: 639px) {
+  .max-sm\:hidden  { display: none !important; }
+  .max-sm\:block   { display: block !important; }
+  .max-sm\:flex    { display: flex !important; }
+  .max-sm\:flex-col { flex-direction: column !important; }
+  .max-sm\:w-full  { width: 100% !important; }
+  .max-sm\:p-4     { padding: 16px !important; }
+}
+
+@media (max-width: 767px) {
+  .max-md\:hidden  { display: none !important; }
+  .max-md\:block   { display: block !important; }
+  .max-md\:flex    { display: flex !important; }
+  .max-md\:flex-col { flex-direction: column !important; }
+  .max-md\:w-full  { width: 100% !important; }
+  .max-md\:p-4     { padding: 16px !important; }
+}
+
+@media (max-width: 1023px) {
+  .max-lg\:hidden  { display: none !important; }
+  .max-lg\:block   { display: block !important; }
+  .max-lg\:flex    { display: flex !important; }
+  .max-lg\:flex-col { flex-direction: column !important; }
+  .max-lg\:w-full  { width: 100% !important; }
+}

@@ -1,0 +1,691 @@
+/**
+ * ============================================================================
+ * GlassFlow UI - Core Stylesheet
+ * ============================================================================
+ * Description:
+ *   Core CSS file for GlassFlow UI component library.
+ *   Contains CSS custom properties (design tokens), base glass effect classes,
+ *   liquid glass core effects, edge refraction simulation, elastic animations,
+ *   chromatic aberration simulation, and frost level controls.
+ *
+ * Framework: Framework-agnostic (Pure CSS + Web Components)
+ * Style: Apple Liquid Glass inspired
+ * Browser Support: Modern browsers with fallbacks for older browsers
+ * ============================================================================
+ */
+
+/* ============================================================================
+ * 1. CSS Custom Properties (Design Tokens)
+ * ============================================================================ */
+
+:root {
+  /* -- Color Palette -------------------------------------------------------- */
+  --gf-color-primary: #007aff;
+  --gf-color-primary-light: #4da3ff;
+  --gf-color-primary-dark: #0055b3;
+  --gf-color-secondary: #5856d6;
+  --gf-color-secondary-light: #8a88e8;
+  --gf-color-secondary-dark: #3a38a0;
+  --gf-color-accent: #ff9500;
+  --gf-color-accent-light: #ffb84d;
+  --gf-color-accent-dark: #cc7700;
+  --gf-color-success: #34c759;
+  --gf-color-success-light: #7dd99a;
+  --gf-color-success-dark: #248a3d;
+  --gf-color-warning: #ffcc00;
+  --gf-color-warning-light: #ffe066;
+  --gf-color-warning-dark: #cca300;
+  --gf-color-danger: #ff3b30;
+  --gf-color-danger-light: #ff7a73;
+  --gf-color-danger-dark: #cc2f26;
+  --gf-color-info: #5ac8fa;
+  --gf-color-info-light: #9cddf8;
+  --gf-color-info-dark: #3a9ec7;
+
+  /* -- Semantic Colors ----------------------------------------------------- */
+  --gf-color-text: #1d1d1f;
+  --gf-color-text-secondary: #6e6e73;
+  --gf-color-text-tertiary: #aeaeb2;
+  --gf-color-text-inverse: #ffffff;
+  --gf-color-background: #f5f5f7;
+  --gf-color-surface: #ffffff;
+  --gf-color-border: rgba(0, 0, 0, 0.08);
+  --gf-color-overlay: rgba(0, 0, 0, 0.4);
+
+  /* -- Glass Core Properties ----------------------------------------------- */
+  --gf-blur-sm: 8px;
+  --gf-blur-md: 16px;
+  --gf-blur-lg: 24px;
+  --gf-blur-xl: 40px;
+  --gf-blur-default: var(--gf-blur-lg);
+
+  /* -- Opacity Levels ------------------------------------------------------- */
+  --gf-opacity-subtle: 0.1;
+  --gf-opacity-light: 0.2;
+  --gf-opacity-medium: 0.4;
+  --gf-opacity-heavy: 0.6;
+  --gf-opacity-default: var(--gf-opacity-light);
+
+  /* -- Border Radius -------------------------------------------------------- */
+  --gf-radius-sm: 8px;
+  --gf-radius-md: 12px;
+  --gf-radius-lg: 16px;
+  --gf-radius-xl: 24px;
+  --gf-radius-2xl: 32px;
+  --gf-radius-full: 9999px;
+  --gf-radius-default: var(--gf-radius-lg);
+
+  /* -- Border --------------------------------------------------------------- */
+  --gf-border-width: 1px;
+  --gf-border-color: rgba(255, 255, 255, 0.18);
+  --gf-border-color-dark: rgba(255, 255, 255, 0.08);
+  --gf-border-highlight: rgba(255, 255, 255, 0.4);
+
+  /* -- Shadows -------------------------------------------------------------- */
+  --gf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --gf-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --gf-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+  --gf-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.2);
+  --gf-shadow-glow: 0 0 20px rgba(0, 122, 255, 0.3);
+  --gf-shadow-default: var(--gf-shadow-md);
+
+  /* -- Glass Surface Colors ------------------------------------------------- */
+  --gf-glass-bg: rgba(255, 255, 255, 0.2);
+  --gf-glass-bg-hover: rgba(255, 255, 255, 0.28);
+  --gf-glass-bg-active: rgba(255, 255, 255, 0.35);
+  --gf-glass-bg-dark: rgba(30, 30, 30, 0.4);
+  --gf-glass-bg-dark-hover: rgba(30, 30, 30, 0.5);
+  --gf-glass-bg-dark-active: rgba(30, 30, 30, 0.6);
+
+  /* -- Chromatic Aberration ------------------------------------------------- */
+  --gf-chroma-offset: 0px;
+  --gf-chroma-intensity: 0;
+
+  /* -- Edge Refraction ------------------------------------------------------ */
+  --gf-refraction-intensity: 0.5;
+  --gf-refraction-angle: 135deg;
+
+  /* -- Highlight / Specular ------------------------------------------------- */
+  --gf-highlight-intensity: 0.6;
+  --gf-highlight-angle: 135deg;
+  --gf-highlight-size: 50%;
+
+  /* -- Frost Levels --------------------------------------------------------- */
+  --gf-frost-light: 0.15;
+  --gf-frost-medium: 0.35;
+  --gf-frost-heavy: 0.55;
+
+  /* -- Elastic Animation ---------------------------------------------------- */
+  --gf-elastic-duration: 0.4s;
+  --gf-elastic-timing: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --gf-transition-fast: 0.15s ease;
+  --gf-transition-normal: 0.25s ease;
+  --gf-transition-slow: 0.4s ease;
+
+  /* -- Z-Index Scale -------------------------------------------------------- */
+  --gf-z-dropdown: 100;
+  --gf-z-sticky: 200;
+  --gf-z-modal-backdrop: 300;
+  --gf-z-modal: 400;
+  --gf-z-tooltip: 500;
+  --gf-z-toast: 600;
+}
+
+
+/* ============================================================================
+ * 2. Dark / Light Theme Auto-Switch
+ * ============================================================================ */
+
+/* -- Light Theme (Default) ------------------------------------------------- */
+@media (prefers-color-scheme: light) {
+  :root {
+    --gf-color-text: #1d1d1f;
+    --gf-color-text-secondary: #6e6e73;
+    --gf-color-text-tertiary: #aeaeb2;
+    --gf-color-text-inverse: #ffffff;
+    --gf-color-background: #f5f5f7;
+    --gf-color-surface: #ffffff;
+    --gf-color-border: rgba(0, 0, 0, 0.08);
+    --gf-color-overlay: rgba(0, 0, 0, 0.4);
+
+    --gf-glass-bg: rgba(255, 255, 255, 0.2);
+    --gf-glass-bg-hover: rgba(255, 255, 255, 0.28);
+    --gf-glass-bg-active: rgba(255, 255, 255, 0.35);
+    --gf-border-color: rgba(255, 255, 255, 0.18);
+    --gf-border-highlight: rgba(255, 255, 255, 0.4);
+
+    --gf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --gf-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --gf-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+    --gf-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* -- Dark Theme ------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gf-color-text: #f5f5f7;
+    --gf-color-text-secondary: #a1a1a6;
+    --gf-color-text-tertiary: #6e6e73;
+    --gf-color-text-inverse: #1d1d1f;
+    --gf-color-background: #1d1d1f;
+    --gf-color-surface: #2c2c2e;
+    --gf-color-border: rgba(255, 255, 255, 0.08);
+    --gf-color-overlay: rgba(0, 0, 0, 0.6);
+
+    --gf-glass-bg: rgba(30, 30, 30, 0.4);
+    --gf-glass-bg-hover: rgba(30, 30, 30, 0.5);
+    --gf-glass-bg-active: rgba(30, 30, 30, 0.6);
+    --gf-border-color: rgba(255, 255, 255, 0.08);
+    --gf-border-highlight: rgba(255, 255, 255, 0.15);
+
+    --gf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --gf-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --gf-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --gf-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* -- Manual theme override classes ------------------------------------------ */
+.gf-theme-light {
+  --gf-color-text: #1d1d1f;
+  --gf-color-text-secondary: #6e6e73;
+  --gf-color-text-tertiary: #aeaeb2;
+  --gf-color-text-inverse: #ffffff;
+  --gf-color-background: #f5f5f7;
+  --gf-color-surface: #ffffff;
+  --gf-color-border: rgba(0, 0, 0, 0.08);
+  --gf-color-overlay: rgba(0, 0, 0, 0.4);
+  --gf-glass-bg: rgba(255, 255, 255, 0.2);
+  --gf-glass-bg-hover: rgba(255, 255, 255, 0.28);
+  --gf-glass-bg-active: rgba(255, 255, 255, 0.35);
+  --gf-border-color: rgba(255, 255, 255, 0.18);
+  --gf-border-highlight: rgba(255, 255, 255, 0.4);
+  --gf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --gf-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --gf-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+  --gf-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+.gf-theme-dark {
+  --gf-color-text: #f5f5f7;
+  --gf-color-text-secondary: #a1a1a6;
+  --gf-color-text-tertiary: #6e6e73;
+  --gf-color-text-inverse: #1d1d1f;
+  --gf-color-background: #1d1d1f;
+  --gf-color-surface: #2c2c2e;
+  --gf-color-border: rgba(255, 255, 255, 0.08);
+  --gf-color-overlay: rgba(0, 0, 0, 0.6);
+  --gf-glass-bg: rgba(30, 30, 30, 0.4);
+  --gf-glass-bg-hover: rgba(30, 30, 30, 0.5);
+  --gf-glass-bg-active: rgba(30, 30, 30, 0.6);
+  --gf-border-color: rgba(255, 255, 255, 0.08);
+  --gf-border-highlight: rgba(255, 255, 255, 0.15);
+  --gf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --gf-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --gf-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --gf-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+}
+
+
+/* ============================================================================
+ * 3. Base Glass Effect Classes
+ * ============================================================================ */
+
+/**
+ * .glass - Default glass effect
+ * Applies backdrop-filter blur, semi-transparent background,
+ * subtle border, and shadow to create a frosted glass appearance.
+ */
+.glass {
+  background: var(--gf-glass-bg);
+  -webkit-backdrop-filter: blur(var(--gf-blur-default)) saturate(180%);
+  backdrop-filter: blur(var(--gf-blur-default)) saturate(180%);
+  border: var(--gf-border-width) solid var(--gf-border-color);
+  border-radius: var(--gf-radius-default);
+  box-shadow: var(--gf-shadow-default);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--gf-transition-normal);
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass {
+    background: rgba(245, 245, 247, 0.92);
+  }
+}
+
+/**
+ * .glass-dark - Dark glass variant
+ * Optimized for dark backgrounds and dark mode.
+ */
+.glass-dark {
+  background: var(--gf-glass-bg-dark);
+  -webkit-backdrop-filter: blur(var(--gf-blur-default)) saturate(180%);
+  backdrop-filter: blur(var(--gf-blur-default)) saturate(180%);
+  border: var(--gf-border-width) solid var(--gf-border-color-dark);
+  border-radius: var(--gf-radius-default);
+  box-shadow: var(--gf-shadow-default);
+  color: var(--gf-color-text-inverse);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--gf-transition-normal);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-dark {
+    background: rgba(30, 30, 30, 0.92);
+  }
+}
+
+/**
+ * .glass-light - Light glass variant
+ * Extra light and subtle glass effect for bright interfaces.
+ */
+.glass-light {
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(var(--gf-blur-sm)) saturate(150%);
+  backdrop-filter: blur(var(--gf-blur-sm)) saturate(150%);
+  border: var(--gf-border-width) solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--gf-radius-default);
+  box-shadow: var(--gf-shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--gf-transition-normal);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-light {
+    background: rgba(245, 245, 247, 0.85);
+  }
+}
+
+/**
+ * .glass-colored - Colored glass variant
+ * Tinted glass effect using CSS custom properties.
+ * Set --gf-glass-tint to any color to apply a color overlay.
+ */
+.glass-colored {
+  --gf-glass-tint: var(--gf-color-primary);
+  background:
+    linear-gradient(
+      var(--gf-refraction-angle),
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    ),
+    color-mix(in srgb, var(--gf-glass-tint) 15%, transparent);
+  -webkit-backdrop-filter: blur(var(--gf-blur-default)) saturate(200%);
+  backdrop-filter: blur(var(--gf-blur-default)) saturate(200%);
+  border: var(--gf-border-width) solid
+    color-mix(in srgb, var(--gf-glass-tint) 20%, rgba(255, 255, 255, 0.18));
+  border-radius: var(--gf-radius-default);
+  box-shadow:
+    var(--gf-shadow-default),
+    0 0 12px color-mix(in srgb, var(--gf-glass-tint) 15%, transparent);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--gf-transition-normal);
+}
+
+/* Fallback for color-mix (older browsers) */
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+  .glass-colored {
+    background: rgba(0, 122, 255, 0.15);
+    border-color: rgba(0, 122, 255, 0.2);
+    box-shadow: var(--gf-shadow-default), 0 0 12px rgba(0, 122, 255, 0.15);
+  }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-colored {
+    background: rgba(0, 122, 255, 0.12);
+  }
+}
+
+
+/* ============================================================================
+ * 4. Liquid Glass Core Effects
+ * ============================================================================ */
+
+/**
+ * .glass-liquid - Full liquid glass effect
+ * Combines blur, refraction simulation, chromatic aberration,
+ * and dynamic highlight for a premium liquid glass appearance.
+ */
+.glass-liquid {
+  background: var(--gf-glass-bg);
+  -webkit-backdrop-filter:
+    blur(var(--gf-blur-default))
+    saturate(180%)
+    brightness(1.05);
+  backdrop-filter:
+    blur(var(--gf-blur-default))
+    saturate(180%)
+    brightness(1.05);
+  border: var(--gf-border-width) solid var(--gf-border-color);
+  border-radius: var(--gf-radius-default);
+  box-shadow: var(--gf-shadow-default);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--gf-transition-normal);
+}
+
+/* -- Dynamic Specular Highlight --------------------------------------------- */
+.glass-liquid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    var(--gf-highlight-angle),
+    rgba(255, 255, 255, calc(var(--gf-highlight-intensity) * 0.4)) 0%,
+    rgba(255, 255, 255, 0) var(--gf-highlight-size),
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* -- Inner Edge Glow ------------------------------------------------------- */
+.glass-liquid::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure child content sits above pseudo-elements */
+.glass-liquid > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ============================================================================
+ * 5. Edge Refraction Simulation
+ * ============================================================================ */
+
+/**
+ * .glass-refract - Edge refraction effect
+ * Simulates the light bending at glass edges using layered
+ * pseudo-elements with gradient overlays.
+ */
+.glass-refract {
+  position: relative;
+}
+
+.glass-refract::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    var(--gf-refraction-angle),
+    rgba(255, 255, 255, calc(var(--gf-refraction-intensity) * 0.3)) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(255, 255, 255, calc(var(--gf-refraction-intensity) * 0.15)) 100%
+  );
+  pointer-events: none;
+  z-index: 3;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 2px;
+}
+
+/**
+ * .glass-refract-strong - Stronger refraction effect
+ * Enhanced edge bending for more pronounced liquid glass appearance.
+ */
+.glass-refract-strong {
+  --gf-refraction-intensity: 0.8;
+}
+
+/**
+ * .glass-refract-subtle - Subtle refraction effect
+ * Minimal edge bending for a delicate glass appearance.
+ */
+.glass-refract-subtle {
+  --gf-refraction-intensity: 0.25;
+}
+
+
+/* ============================================================================
+ * 6. Elastic Animation Effects (Hover / Click)
+ * ============================================================================ */
+
+/**
+ * .glass-elastic - Elastic hover/click feedback
+ * Applies spring-like scale transforms on hover and press.
+ */
+.glass-elastic {
+  transition:
+    transform var(--gf-elastic-duration) var(--gf-elastic-timing),
+    box-shadow var(--gf-transition-normal);
+  will-change: transform;
+}
+
+.glass-elastic:hover {
+  transform: scale(1.02);
+  box-shadow: var(--gf-shadow-lg);
+}
+
+.glass-elastic:active {
+  transform: scale(0.97);
+  box-shadow: var(--gf-shadow-sm);
+  transition-duration: 0.1s;
+}
+
+/**
+ * .glass-elastic-bounce - Bouncy elastic effect
+ * More pronounced bounce on interaction.
+ */
+.glass-elastic-bounce {
+  transition:
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow var(--gf-transition-normal);
+  will-change: transform;
+}
+
+.glass-elastic-bounce:hover {
+  transform: scale(1.04);
+  box-shadow: var(--gf-shadow-lg);
+}
+
+.glass-elastic-bounce:active {
+  transform: scale(0.95);
+  box-shadow: var(--gf-shadow-sm);
+  transition-duration: 0.1s;
+}
+
+/**
+ * .glass-elastic-gentle - Gentle elastic effect
+ * Subtle scale feedback for less intrusive interaction.
+ */
+.glass-elastic-gentle {
+  transition:
+    transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow var(--gf-transition-normal);
+  will-change: transform;
+}
+
+.glass-elastic-gentle:hover {
+  transform: scale(1.01);
+}
+
+.glass-elastic-gentle:active {
+  transform: scale(0.99);
+  transition-duration: 0.08s;
+}
+
+
+/* ============================================================================
+ * 7. Chromatic Aberration Simulation
+ * ============================================================================ */
+
+/**
+ * .glass-chroma - Chromatic aberration effect
+ * Simulates color fringing at glass edges using text-shadow
+ * and box-shadow with RGB channel offsets.
+ */
+.glass-chroma {
+  --gf-chroma-offset: 1px;
+  --gf-chroma-intensity: 0.5;
+}
+
+.glass-chroma::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  box-shadow:
+    calc(var(--gf-chroma-offset) * -1) 0
+      calc(var(--gf-chroma-offset) * 2)
+      rgba(255, 0, 0, calc(var(--gf-chroma-intensity) * 0.15)),
+    calc(var(--gf-chroma-offset) * 1) 0
+      calc(var(--gf-chroma-offset) * 2)
+      rgba(0, 0, 255, calc(var(--gf-chroma-intensity) * 0.15));
+  pointer-events: none;
+  z-index: 0;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 1px;
+}
+
+/**
+ * .glass-chroma-strong - Strong chromatic aberration
+ * More visible color fringing effect.
+ */
+.glass-chroma-strong {
+  --gf-chroma-offset: 2px;
+  --gf-chroma-intensity: 0.8;
+}
+
+/**
+ * .glass-chroma-subtle - Subtle chromatic aberration
+ * Barely visible color fringing for a refined look.
+ */
+.glass-chroma-subtle {
+  --gf-chroma-offset: 0.5px;
+  --gf-chroma-intensity: 0.3;
+}
+
+
+/* ============================================================================
+ * 8. Frost Level Controls
+ * ============================================================================ */
+
+/**
+ * .frost-light - Light frost (subtle blur)
+ * Minimal frosted glass effect, preserves more background visibility.
+ */
+.frost-light {
+  --gf-blur-default: var(--gf-blur-sm);
+  background: rgba(255, 255, 255, var(--gf-frost-light));
+  -webkit-backdrop-filter: blur(var(--gf-blur-sm)) saturate(120%);
+  backdrop-filter: blur(var(--gf-blur-sm)) saturate(120%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .frost-light {
+    background: rgba(30, 30, 30, var(--gf-frost-light));
+  }
+}
+
+/**
+ * .frost-medium - Medium frost (default)
+ * Balanced frosted glass effect.
+ */
+.frost-medium {
+  --gf-blur-default: var(--gf-blur-md);
+  background: rgba(255, 255, 255, var(--gf-frost-medium));
+  -webkit-backdrop-filter: blur(var(--gf-blur-md)) saturate(150%);
+  backdrop-filter: blur(var(--gf-blur-md)) saturate(150%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .frost-medium {
+    background: rgba(30, 30, 30, var(--gf-frost-medium));
+  }
+}
+
+/**
+ * .frost-heavy - Heavy frost (maximum blur)
+ * Strong frosted glass effect, heavily obscures background.
+ */
+.frost-heavy {
+  --gf-blur-default: var(--gf-blur-xl);
+  background: rgba(255, 255, 255, var(--gf-frost-heavy));
+  -webkit-backdrop-filter: blur(var(--gf-blur-xl)) saturate(200%);
+  backdrop-filter: blur(var(--gf-blur-xl)) saturate(200%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .frost-heavy {
+    background: rgba(30, 30, 30, var(--gf-frost-heavy));
+  }
+}
+
+/* Fallback for frost levels without backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+  .frost-light  { background: rgba(245, 245, 247, 0.75); }
+  .frost-medium { background: rgba(245, 245, 247, 0.88); }
+  .frost-heavy  { background: rgba(245, 245, 247, 0.95); }
+
+  @media (prefers-color-scheme: dark) {
+    .frost-light  { background: rgba(30, 30, 30, 0.75); }
+    .frost-medium { background: rgba(30, 30, 30, 0.88); }
+    .frost-heavy  { background: rgba(30, 30, 30, 0.95); }
+  }
+}
+
+
+/* ============================================================================
+ * 9. Base Reset & Typography
+ * ============================================================================ */
+
+/**
+ * Apply to container elements to ensure glass children render correctly.
+ */
+.glass-container {
+  position: relative;
+  color: var(--gf-color-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure glass elements have proper stacking context */
+.glass,
+.glass-dark,
+.glass-light,
+.glass-colored,
+.glass-liquid {
+  isolation: isolate;
+}

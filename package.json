@@ -1,0 +1,82 @@
+{
+  "name": "glassflow-ui",
+  "version": "1.0.0",
+  "description": "Framework-agnostic Apple Liquid Glass UI component library with Web Components, theme system, and liquid animations.",
+  "main": "src/js/glassflow.js",
+  "module": "src/js/glassflow.js",
+  "types": "src/types/glassflow.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/js/glassflow.js",
+      "require": "./src/js/glassflow.js",
+      "types": "./src/types/glassflow.d.ts"
+    },
+    "./components": {
+      "import": "./src/js/glassflow-components.js",
+      "require": "./src/js/glassflow-components.js"
+    },
+    "./style.css": "./src/css/glassflow.css",
+    "./demo/*": "./demo/*"
+  },
+  "files": [
+    "src/js/",
+    "src/css/",
+    "src/types/",
+    "demo/"
+  ],
+  "scripts": {
+    "build": "echo \"No build step required - vanilla JS\" && exit 0",
+    "dev": "npx serve demo -l 3000",
+    "lint": "eslint src/js/ --ext .js",
+    "prettier": "prettier --write \"src/js/**/*.js\" \"demo/**/*.html\"",
+    "prettier:check": "prettier --check \"src/js/**/*.js\" \"demo/**/*.html\"",
+    "test": "echo \"No tests configured yet\" && exit 0",
+    "prepublishOnly": "npm run prettier:check && npm run lint"
+  },
+  "keywords": [
+    "glassmorphism",
+    "liquid-glass",
+    "apple",
+    "ui",
+    "components",
+    "web-components",
+    "custom-elements",
+    "shadow-dom",
+    "glass",
+    "frosted",
+    "backdrop-filter",
+    "theme",
+    "animation",
+    "ripple",
+    "framework-agnostic",
+    "react",
+    "vue",
+    "svelte",
+    "vanilla"
+  ],
+  "author": "GlassFlow Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glassflow-ui/glassflow-ui.git"
+  },
+  "homepage": "https://github.com/glassflow-ui/glassflow-ui#readme",
+  "bugs": {
+    "url": "https://github.com/glassflow-ui/glassflow-ui/issues"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.0",
+    "serve": "^14.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "sideEffects": false
+}
